@@ -6,13 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="170dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:onClick="login"
+        android:text="@string/login"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnCreateAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnCreateAccount" />
+
+    <Button
+        android:id="@+id/btnCreateAccount"
+        android:layout_width="170dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="328dp"
+        android:gravity="center"
+        android:onClick="createNewAccount"
+        android:text="@string/create_account"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/btnLogin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
+        android:id="@+id/lblWelcome"
+        android:layout_width="216dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="136dp"
+        android:text="@string/welcome_msg"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnStoreOwner"
+        android:layout_width="170dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:onClick="storeOwnerAccount"
+        android:text="@string/store_owner"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnCustomer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnCustomer" />
+
+    <Button
+        android:id="@+id/btnCustomer"
+        android:layout_width="169dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="204dp"
+        android:onClick="userAccount"
+        android:text="@string/customer"
+        app:layout_constraintEnd_toStartOf="@+id/btnStoreOwner"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblWelcome" />
+
+    <Button
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginStart="156dp"
+        android:layout_marginBottom="168dp"
+        android:onClick="back"
+        android:text="@string/back"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

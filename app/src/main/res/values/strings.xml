@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">B07 Project</string>
+    <string name="welcome_msg">What type of user are you</string>
+    <string name="customer">Customer</string>
+    <string name="store_owner">Store Owner</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">login</string>
+    <string name="back">back</string>
 </resources>
