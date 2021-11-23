@@ -1,0 +1,16 @@
+WORKING AGREEMENT
+
+StandUps:
+-Monday, Wednessday, Thursday 9PM for discord call StandUps.
+-Daily messages in the group chat for updates/ roadblocks
+-One person wil talk about their progress. Comments will come afterwards
+
+Commits:
+-must be in this format:
+"NAME" changed/updated/removed "METHOD/CLASS/INTERFACE" by "HOW IT WAS CHANGED" so that "REASON FOR CHANGE" for "USER STORY NUMBER"
+
+All code and parts should be submitted 5h before the deadline at the latest.
+
+Something is "DONE" when it has been peer reviewed, peer tested, and completely integrated into the rest of the project.
+
+Something is considered peer tested if it has been completely unit tested by the person responsible and the peer.
