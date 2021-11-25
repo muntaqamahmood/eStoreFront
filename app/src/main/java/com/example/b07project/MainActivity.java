@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,23 +11,11 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     boolean isCustomer;
-    Button customerButton;
-    Button storeOwnerButton;
-    Button createAccountButton;
-    Button loginButton;
-    Button backButton;
-    TextView welcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        storeOwnerButton = findViewById(R.id.btnStoreOwner);
-        customerButton = findViewById(R.id.btnCustomer);
-        createAccountButton = findViewById(R.id.btnCreateAccount);
-        loginButton = findViewById(R.id.btnLogin);
-        welcome = findViewById(R.id.lblWelcome);
-        backButton = findViewById(R.id.btnBack);
     }
 
     public void userAccount(View view){
@@ -40,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createNewAccount(View view){
-
+        Intent intent = new Intent(this, AccountCreationActivity.class);
+        intent.putExtra("account_type", isCustomer);
+        startActivity(intent);
     }
 
     public void login(View view){
@@ -52,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void switchVisibilities(){
+        Button customerButton = findViewById(R.id.btnCustomer);
+        Button storeOwnerButton = findViewById(R.id.btnStoreOwner);
+        Button createAccountButton = findViewById(R.id.btnCreateAccount);
+        Button loginButton = findViewById(R.id.btnLogin);
+        Button backButton = findViewById(R.id.btnBack);
+        TextView welcome = findViewById(R.id.lblWelcome);
+
         if(customerButton.getVisibility() == View.VISIBLE){
             customerButton.setVisibility(View.INVISIBLE);
             storeOwnerButton.setVisibility(View.INVISIBLE);
