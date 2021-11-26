@@ -10,6 +10,7 @@ public interface OwnerAddProductContract {
         public String getProductName();
         public String getBrandName();
         public String getPrice();
+        public void displayMessage(String msg);
     }
 
     public interface OwnerAddProductPresenter{
