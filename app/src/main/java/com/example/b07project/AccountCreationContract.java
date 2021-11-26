@@ -7,7 +7,7 @@ public interface AccountCreationContract {
     }
 
     public interface Presenter{
-        public void checkValidAccount(String username, String password);
+        public boolean isValidAccount(String username, String password);
     }
 
     public interface View{

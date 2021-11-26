@@ -9,7 +9,7 @@ public interface OwnerAddProductContract {
     public interface OwnerAddProductView{
         public String getProductName();
         public String getBrandName();
-        public String getPrice();
+        public float getPrice();
     }
 
     public interface OwnerAddProductPresenter{
