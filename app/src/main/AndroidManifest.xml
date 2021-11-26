@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
+            android:name=".owner_add_product"
+            android:exported="false" />
+        <activity
             android:name=".AccountCreationActivity"
             android:exported="false" />
         <activity
