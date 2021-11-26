@@ -3,7 +3,9 @@ package com.example.b07project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class owner_add_product extends AppCompatActivity implements OwnerAddProductContract.OwnerAddProductView{
 
@@ -33,5 +35,13 @@ public class owner_add_product extends AppCompatActivity implements OwnerAddProd
         return editText.getText().toString();
     }
 
+    @Override
+    public void displayMessage(String msg){
+        TextView textView = findViewById(R.id.txtAPStatus);
+        textView.setText(msg);
+    }
 
+    public void confirmButton(View view){
+        presenter.checkProductInputs(getProductName(),getBrandName(),getPrice());
+    }
 }
