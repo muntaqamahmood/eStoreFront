@@ -55,6 +55,6 @@ public class Checkout extends ShoppingCart {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, totalPrice, totalQuantity, date);
+        return id;
     }
 }

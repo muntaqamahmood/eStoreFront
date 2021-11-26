@@ -27,20 +27,20 @@ public class ShoppingCart extends Order{
     }
     @Override
     public void addItem(Product product) {
-        added_to_cart.addItem(product);
+        added_to_cart.add(product);
     }
 
     @Override
     public void removeItem(Product product) {
-        removed_from_cart.removeItem(product);
+        removed_from_cart.remove(product);
     }
 
     public void updateCartadd(Product product) {
-        updated_in_cart.addItem(product);
+        updated_in_cart.add(product);
     }
 
     public void updateCartremove(Product product) {
-        updated_in_cart.removeItem(product);
+        updated_in_cart.remove(product);
     }
 
     public void clearCart() {
