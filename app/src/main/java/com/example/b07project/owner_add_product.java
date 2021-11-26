@@ -23,11 +23,15 @@ public class owner_add_product extends AppCompatActivity implements OwnerAddProd
 
     @Override
     public String getBrandName() {
-        return null;
+        EditText editText = findViewById(R.id.txtBrandName);
+        return editText.getText().toString();
     }
 
     @Override
-    public float getPrice() {
-        return null;
+    public String getPrice() { //will need error testing
+        EditText editText = findViewById(R.id.txtPrice);
+        return editText.getText().toString();
     }
+
+    
 }

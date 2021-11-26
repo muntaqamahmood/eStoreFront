@@ -9,10 +9,10 @@ public interface OwnerAddProductContract {
     public interface OwnerAddProductView{
         public String getProductName();
         public String getBrandName();
-        public float getPrice();
+        public String getPrice();
     }
 
     public interface OwnerAddProductPresenter{
-        public void checkProductInputs(String productName, String brandName, float price);
+        public void checkProductInputs(String productName, String brandName, String price);
     }
 }
