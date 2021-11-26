@@ -3,7 +3,7 @@ package com.example.b07project;
 public interface OwnerAddProductContract {
 
     public interface OwnerAddProductModel{
-
+    //firebase stuff should be done here
     }
 
     public interface OwnerAddProductView{

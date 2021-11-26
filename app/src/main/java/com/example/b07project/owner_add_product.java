@@ -33,5 +33,5 @@ public class owner_add_product extends AppCompatActivity implements OwnerAddProd
         return editText.getText().toString();
     }
 
-    
+
 }
