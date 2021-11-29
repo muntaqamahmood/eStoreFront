@@ -14,4 +14,14 @@ public class Product {
         this.price = price;
     }
 
+    @Override
+    public int hashCode(){
+        return (int)(name.length() + price* 100);
+    }
+
+    @Override
+    public String toString(){
+        return name + ',' + brand +',' + price;
+    }
+
 }

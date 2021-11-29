@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void login(View view){
+    public void login(View view){ //link this method to the ownerlanding UI/activity
 
     }
 
