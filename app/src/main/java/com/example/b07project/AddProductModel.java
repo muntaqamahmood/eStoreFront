@@ -5,9 +5,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddProductModel implements OwnerAddProductContract.OwnerAddProductModel{
     //write to the database
-    void addProduct(Product p) {
+    void addProduct(Product p, StoreOwner owner) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child()
+        ref.child(owner.getUsername()).child("Products").setValue(p);
     }
 
 
