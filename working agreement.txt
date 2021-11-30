@@ -3,7 +3,7 @@ WORKING AGREEMENT
 StandUps:
 -Monday, Wednessday, Thursday 9PM for discord call StandUps.
 -Daily messages in the group chat for updates/ roadblocks
--One person wil talk about their progress. Comments will come afterwards
+-One person will talk about their progress. Comments will come afterwards
 
 Commits:
 -must be in this format:
