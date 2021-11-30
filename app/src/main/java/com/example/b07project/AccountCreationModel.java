@@ -23,11 +23,11 @@ public class AccountCreationModel implements AccountCreationContract.Model{
             DatabaseReference ref = database.getReference("store owners");
             ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {  //Problem, this gets called after the
-                    if(!task.isSuccessful()){                               //return of usernameAlreadyExists
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if(!task.isSuccessful()){
                         //error getting data
                     }else{
-                        for(DataSnapshot child:task.getResult().getChildren()){  //getChildren could be null
+                        for(DataSnapshot child:task.getResult().getChildren()){
                             StoreOwner storeOwner = child.getValue(StoreOwner.class);
                             if(storeOwner.getUsername().equals(username)){
                                 presenter.doNotMakeAccount();

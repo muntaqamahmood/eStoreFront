@@ -18,31 +18,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void userAccount(View view){
+    public void customerAccount(View view){                 //customer button
         isCustomer = true;
         switchVisibilities();
     }
 
-    public void storeOwnerAccount(View view){
+    public void storeOwnerAccount(View view){               //store owner button
         isCustomer = false;
         switchVisibilities();
     }
 
-    public void createNewAccount(View view){
+    public void createNewAccount(View view){                //opens account creation activity
         Intent intent = new Intent(this, AccountCreationActivity.class);
         intent.putExtra("account_type", isCustomer);
         startActivity(intent);
     }
 
-    public void login(View view){ //link this method to the ownerlanding UI/activity
 
+    public void login(View view){                           //opens login activity
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("account_type", isCustomer);
+        startActivity(intent);
     }
 
-    public void back(View view){
+    public void back(View view){                            //back button
         switchVisibilities();
     }
 
-    public void switchVisibilities(){
+    public void switchVisibilities(){                       //switches visibilities of views
         Button customerButton = findViewById(R.id.btnCustomer);
         Button storeOwnerButton = findViewById(R.id.btnStoreOwner);
         Button createAccountButton = findViewById(R.id.btnCreateAccount);

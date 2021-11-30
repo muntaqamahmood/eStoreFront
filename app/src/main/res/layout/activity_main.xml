@@ -70,7 +70,7 @@
         android:layout_height="75dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="204dp"
-        android:onClick="userAccount"
+        android:onClick="customerAccount"
         android:text="@string/customer"
         app:layout_constraintEnd_toStartOf="@+id/btnStoreOwner"
         app:layout_constraintHorizontal_bias="0.5"
