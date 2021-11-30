@@ -21,6 +21,7 @@ public class AccountCreationActivity extends AppCompatActivity implements Accoun
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_creation);
+
         Intent intent = getIntent();
         isCustomer = intent.getBooleanExtra("account_type",true);
         AccountCreationContract.Model model = new AccountCreationModel();
@@ -30,29 +31,29 @@ public class AccountCreationActivity extends AppCompatActivity implements Accoun
 
     @Override
     public String getUsername(){
-        EditText userText = (EditText)findViewById(R.id.txtUsername);
+        EditText userText = findViewById(R.id.txtUsername);
         return userText.getText().toString();
     }
 
     @Override
     public String getPassword(){
-        EditText passText = (EditText)findViewById(R.id.txtPassword);
+        EditText passText = findViewById(R.id.txtPassword);
         return passText.getText().toString();
     }
 
-    public void createAccount(View view){                       //onClick
-        TextView result =(TextView)findViewById(R.id.lblResult);
+    public void createAccount(View view){                       //create account button
+        TextView result =findViewById(R.id.lblResult);
         result.setText("");
         presenter.checkValidAccount(isCustomer);
     }
 
     @Override
-    public void result(boolean validAccount, String message){
+    public void result(boolean validAccount, String message){   //displays result of account creation
         if(validAccount){
             Toast toast = Toast.makeText(getApplicationContext(), "account made", Toast.LENGTH_SHORT);
             toast.show();
         }else{
-            TextView result =(TextView)findViewById(R.id.lblResult);
+            TextView result =findViewById(R.id.lblResult);
             result.setText(message);
         }
     }
