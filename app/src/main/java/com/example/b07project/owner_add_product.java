@@ -30,7 +30,7 @@ public class owner_add_product extends AppCompatActivity implements OwnerAddProd
     }
 
     @Override
-    public String getPrice() { //will need error testing
+    public String getPrice() {
         EditText editText = findViewById(R.id.txtPrice);
         return editText.getText().toString();
     }

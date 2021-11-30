@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import java.util.PrimitiveIterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,12 +20,14 @@ public class OwnerAddProductPresenter implements OwnerAddProductContract.OwnerAd
             //one of the entries is empty
             view.displayMessage("Entries cannot be empty!");
         }
-        else if(!isPrice(price)) {
+        else if(!isPrice(price)) { //invalid price
             view.displayMessage("Please enter a valid price!");
         }
         else{
             view.displayMessage("Good input!");
-            //now, we call the model to put this into firebase
+
+            //create the product and send it to the firebase
+            Product p = new Product(product, brand, Float.parseFloat(price));
         }
     }
 

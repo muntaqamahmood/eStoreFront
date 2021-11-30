@@ -1,6 +1,8 @@
 package com.example.b07project;
 
-public class StoreOwner extends Account {
+import java.io.Serializable;
+
+public class StoreOwner extends Account implements Serializable {
 
     public StoreOwner() {
     }
