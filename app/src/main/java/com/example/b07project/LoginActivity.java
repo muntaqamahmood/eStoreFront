@@ -41,15 +41,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void result(boolean canLogin, Account account) {
+    public void result(Account account) {
         TextView result = findViewById(R.id.lblOutcome);
         result.setText("");
-
-        if(canLogin){
+        ///want this in Presenter
+        if(account != null){
             StoreOwner accountToLogin;
             Toast toast = Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG);
             toast.show();
-
+            ///want to put intent stuff into Presenter
             if(StoreOwner.class == account.getClass()){
                 Intent intent = new Intent(this, OwnerLanding.class);
                 accountToLogin = (StoreOwner) account;
@@ -59,8 +59,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             else{
                 //make it of class Customer
             }
+            ///
         }else{
-
             result.setText("Incorrect username, password, or both");
         }
 

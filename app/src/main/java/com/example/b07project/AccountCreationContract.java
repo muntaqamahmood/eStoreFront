@@ -16,7 +16,7 @@ public interface AccountCreationContract {
     public interface View{
         public String getUsername();
         public String getPassword();
-        public void result(boolean validAccount, String message);
+        public void result(String message);
     }
 
 }

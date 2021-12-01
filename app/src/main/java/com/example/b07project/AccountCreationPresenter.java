@@ -13,7 +13,6 @@ public class AccountCreationPresenter implements AccountCreationContract.Present
 
     @Override
     public void checkValidAccount(boolean isCustomer) {
-        boolean valid = true;
         String username = view.getUsername();
         String password = view.getPassword();
         String message = "";
@@ -25,17 +24,16 @@ public class AccountCreationPresenter implements AccountCreationContract.Present
 
         if(!userMatcher.matches()) {
             message += "Username invalid, must contain at least 3 letters, numbers, or underscores. ";
-            valid = false;
         }
         if(!passwordMatcher.matches()) {
             message += "Password invalid, must contain at least 1 uppercase letter.";
-            valid = false;
         }
-        if(!valid) {
-            view.result(false, message);
+        if(message != "") {
+            view.result(message);
             return;
         }
-
+        //could check if it is store owner, then make a StoreOwner reference or Customer reference and pass in
+        //a Account reference into model
         model.usernameAlreadyExists(username, password, isCustomer);
     }
 
@@ -43,20 +41,18 @@ public class AccountCreationPresenter implements AccountCreationContract.Present
     public void makeAccount(String username, String password, boolean isCustomer){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         if(!isCustomer){
-            StoreOwner storeOwner = new StoreOwner();
-            storeOwner.setUsername(username);
-            storeOwner.setPassword(password);
+            StoreOwner storeOwner = new StoreOwner(username, password);       //future: storeOwner = (StoreOwner)account;
             ref.child("store owners").child(username).setValue(storeOwner);
         }else{
-            //customer stuff
+            Customer customer = new Customer(username, password);
+            ref.child("customers").child(username).setValue(customer);
         }
-        view.result(true,"");
-
+        view.result("");
     }
 
     @Override
     public void doNotMakeAccount(){
-        view.result(false, "Username already exists");
+        view.result("Username already exists");
     }
 
     public AccountCreationPresenter(AccountCreationContract.View view, AccountCreationContract.Model model){

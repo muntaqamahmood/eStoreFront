@@ -1,5 +1,7 @@
 package com.example.b07project;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,33 +17,39 @@ public class LoginModel implements LoginContract.Model{
     @Override
     public void correctCredentials(String username, String password, boolean isCustomer) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        if(!isCustomer){
-            DatabaseReference ref = database.getReference("store owners");
-            ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if(!task.isSuccessful()){
-                        //error getting data
-                    }else{
-                        if(task.getResult().hasChild(username)){
-                            StoreOwner s = task.getResult().child(username).getValue(StoreOwner.class);
+        DatabaseReference ref;
+        if(!isCustomer)
+            ref = database.getReference("store owners");
+        else
+            ref = database.getReference("customers");
 
-                            StoreOwner storeOwner = new StoreOwner();
-                            storeOwner.setUsername(username);
-                            storeOwner.setPassword(password);
-
-                            if(storeOwner.password.equals(s.password) && storeOwner.username.equals(s.username)) {
-                                presenter.login(s);
-                            }else{
-                                presenter.doNotLogin();
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful()){
+                    //error getting data
+                }else{
+                    if(task.getResult().hasChild(username)){
+                        if(!isCustomer){
+                            StoreOwner storeOwner = task.getResult().child(username).getValue(StoreOwner.class);
+                            if(password.equals(storeOwner.getPassword()) && username.equals(storeOwner.getUsername())) {
+                                presenter.login(storeOwner);
+                                return;
                             }
                         }else{
-                            presenter.doNotLogin();
+                            Customer customer = task.getResult().child(username).getValue(Customer.class);
+                            if(password.equals(customer.getPassword()) && username.equals(customer.getUsername())) {
+                                presenter.login(customer);
+                                return;
+                            }
                         }
+                        presenter.doNotLogin();
+                    }else{
+                        presenter.doNotLogin();
                     }
                 }
-            });
-        }
+            }
+        });
     }
 
     @Override

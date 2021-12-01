@@ -20,7 +20,11 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".OwnerLanding"
             android:exported="false" />
@@ -29,7 +33,11 @@
             android:exported="false" />
         <activity
             android:name=".AccountCreationActivity"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".ui.login.AccountCreateActivity"
             android:exported="false"

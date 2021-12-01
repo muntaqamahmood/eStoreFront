@@ -16,7 +16,7 @@ public interface LoginContract {
     public interface View{
         public String getUsername();
         public String getPassword();
-        public void result(boolean canLogin, Account account);
+        public void result(Account account);
     }
 
 }

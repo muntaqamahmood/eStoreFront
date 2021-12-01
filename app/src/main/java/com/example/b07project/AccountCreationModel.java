@@ -19,30 +19,37 @@ public class AccountCreationModel implements AccountCreationContract.Model{
     public void usernameAlreadyExists(String username, String password, boolean isCustomer) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        if(!isCustomer){
-            DatabaseReference ref = database.getReference("store owners");
-            ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if(!task.isSuccessful()){
-                        //error getting data
-                    }else{
-                        for(DataSnapshot child:task.getResult().getChildren()){
+        DatabaseReference ref;
+        if(!isCustomer)
+            ref = database.getReference("store owners");
+        else
+            ref = database.getReference("customers");
+
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful()){
+                    //error getting data
+                }else{
+                    for(DataSnapshot child:task.getResult().getChildren()){
+                        if(!isCustomer){
                             StoreOwner storeOwner = child.getValue(StoreOwner.class);
                             if(storeOwner.getUsername().equals(username)){
                                 presenter.doNotMakeAccount();
                                 return;
                             }
+                        }else{
+                            Customer customer = child.getValue(Customer.class);
+                            if(customer.getUsername().equals(username)){
+                                presenter.doNotMakeAccount();
+                                return;
+                            }
                         }
-                        presenter.makeAccount(username, password, false);
                     }
+                    presenter.makeAccount(username, password, isCustomer);
                 }
-            });
-
-        }else{
-            //customer version
-        }
-
+            }
+        });
     }
 
     public AccountCreationModel(){

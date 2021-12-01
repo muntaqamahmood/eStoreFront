@@ -48,12 +48,12 @@ public class AccountCreationActivity extends AppCompatActivity implements Accoun
     }
 
     @Override
-    public void result(boolean validAccount, String message){   //displays result of account creation
-        if(validAccount){
+    public void result(String message){   //displays result of account creation
+        if(message.equals("")){
             Toast toast = Toast.makeText(getApplicationContext(), "account made", Toast.LENGTH_SHORT);
             toast.show();
         }else{
-            TextView result =findViewById(R.id.lblResult);
+            TextView result = findViewById(R.id.lblResult);
             result.setText(message);
         }
     }

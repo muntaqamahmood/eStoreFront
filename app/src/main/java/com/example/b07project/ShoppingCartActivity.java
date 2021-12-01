@@ -23,7 +23,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements LoginCont
     }
 
     @Override
-    public void result(boolean canLogin, Account account) {
+    public void result(Account account) {
 
     }
 }
