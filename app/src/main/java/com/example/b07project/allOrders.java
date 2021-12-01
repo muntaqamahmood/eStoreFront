@@ -16,8 +16,10 @@ public class allOrders extends MainActivity {
 
 
     private ArrayList<Order> items;
-    private ArrayAdapter<Order> itemsAdapter;
+    private ArrayList<String> str_items;
+    private ArrayAdapter<String> itemsAdapter;
     private ListView listView;
+
 
     private allOrders(){
 
@@ -27,6 +29,14 @@ public class allOrders extends MainActivity {
 
         return all_orders;
     }
+
+    private void items_to_str(ArrayList<Order> o){
+        str_items = new ArrayList<String>();
+        for(Order i:o){
+            str_items.add(i.toString());
+        }
+    }
+
     @Override
     protected  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -35,7 +45,10 @@ public class allOrders extends MainActivity {
         listView = findViewById(R.id.listView);
 
         items = new ArrayList<>();
-        itemsAdapter = new ArrayAdapter<Order>(this, android.R.layout.simple_list_item_1,items);
+
+        items_to_str(items);
+        
+        itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,str_items);
         listView.setAdapter(itemsAdapter);
 
         setUpListViewListener();

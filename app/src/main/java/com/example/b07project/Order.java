@@ -33,7 +33,7 @@ public class Order extends Product {
         String order;
         order = "Order:\n";
         for(Product p:items){
-            order += p.toString() + "\n";
+            order += "- " + p.toString() + "\n";
         }
 
         order += "\n";
