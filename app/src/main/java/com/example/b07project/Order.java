@@ -28,6 +28,18 @@ public class Order extends Product {
         }
     }
 
+    @Override
+    public String toString(){
+        String order;
+        order = "Order:\n";
+        for(Product p:items){
+            order += p.toString() + "\n";
+        }
+
+        order += "\n";
+        return order;
+    }
+
 
 
 
