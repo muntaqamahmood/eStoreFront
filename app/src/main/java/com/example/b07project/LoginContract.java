@@ -1,0 +1,22 @@
+package com.example.b07project;
+
+public interface LoginContract {
+
+    public interface Model{
+        public void correctCredentials(String username, String password, boolean isCustomer);
+        public void setPresenter(LoginContract.Presenter presenter);
+    }
+
+    public interface Presenter{
+        public void checkValidLogin(boolean isCustomer);
+        public void login(Account account);
+        public void doNotLogin();
+    }
+
+    public interface View{
+        public String getUsername();
+        public String getPassword();
+        public void result(boolean canLogin, Account account);
+    }
+
+}

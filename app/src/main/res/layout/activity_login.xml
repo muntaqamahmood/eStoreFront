@@ -33,13 +33,24 @@
         app:layout_constraintTop_toBottomOf="@+id/txtUname" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCheckAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
         android:layout_marginTop="64dp"
         android:gravity="center"
+        android:onClick="checkLogin"
         android:text="@string/login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPword" />
+
+    <TextView
+        android:id="@+id/lblOutcome"
+        android:layout_width="165dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="108dp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCheckAccount" />
 </androidx.constraintlayout.widget.ConstraintLayout>
