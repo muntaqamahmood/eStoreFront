@@ -27,6 +27,11 @@ public class OwnerLanding extends AppCompatActivity {
     }
 
     public void seePage(View view){
-        //send us to the store page!
+        //retrieve the store owner
+        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
+
+        Intent intent = new Intent(this, StorePage.class);
+        intent.putExtra("store_owner", owner);
+        startActivity(intent);
     }
 }

@@ -10,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
+            android:name=".StorePage"
+            android:parentActivityName=".OwnerLanding">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OwnerLanding"/>
+        </activity>
+        <activity
             android:name=".CheckoutActivity"
             android:exported="false" />
         <activity
@@ -30,14 +37,14 @@
             android:parentActivityName=".LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity"/>
+                android:value=".LoginActivity" />
         </activity>
         <activity
             android:name=".owner_add_product"
             android:parentActivityName=".OwnerLanding">
             <meta-data
-               android:name="android.support.PARENT_ACTIVITY"
-               android:value=".OwnerLanding" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OwnerLanding" />
         </activity>
         <activity
             android:name=".AccountCreationActivity"
