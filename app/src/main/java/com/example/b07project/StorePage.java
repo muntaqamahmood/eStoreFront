@@ -1,11 +1,19 @@
 package com.example.b07project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -34,6 +42,32 @@ public class StorePage extends AppCompatActivity {
         //go thru the database (under this owner)
         //get the products into the arraylist using toString
 
-
+        //read the database
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(owner.getUsername()).child("Products");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()){
+                    Log.e("B07 Project", "Couldn't get data", task.getException());
+                }else{
+                    //go through every product under the store owner
+                    for(DataSnapshot child:task.getResult().getChildren()){
+                        if(!isCustomer){
+                            StoreOwner storeOwner = child.getValue(StoreOwner.class);
+                            if(storeOwner.getUsername().equals(username)){
+                                presenter.doNotMakeAccount();
+                                return;
+                            }
+                        }else{
+                            Customer customer = child.getValue(Customer.class);
+                            if(customer.getUsername().equals(username)){
+                                presenter.doNotMakeAccount();
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
 }
