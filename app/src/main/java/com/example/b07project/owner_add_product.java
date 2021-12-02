@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 public class owner_add_product extends AppCompatActivity implements OwnerAddProductContract.OwnerAddProductView{
 
-    AddProductModel model = new AddProductModel();
-    OwnerAddProductPresenter presenter = new OwnerAddProductPresenter(model, this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_add_product);
     }
+
+    AddProductModel model = new AddProductModel();
+    OwnerAddProductPresenter presenter = new OwnerAddProductPresenter(model, this);
 
     @Override
     public String getProductName() {

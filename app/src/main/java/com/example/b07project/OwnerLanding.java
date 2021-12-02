@@ -14,13 +14,15 @@ public class OwnerLanding extends AppCompatActivity {
         setContentView(R.layout.activity_owner_landing);
     }
 
-    //DONT FORGET TO GET THE INTENT SOMEWHERE (name it 'owner')
-    //getIntent().getSerializableExtra("whatever the string was");
+
 
     //addProduct will send the user to the UI for adding a product
     public void addProduct(View view){
-        Intent intent = new Intent(this, owner_add_product.class);//send to this class
-      //  intent.putExtra("store_owner", owner);
+        //retrieve the store owner
+        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
+
+        Intent intent = new Intent(this, owner_add_product.class);
+        intent.putExtra("store_owner", owner);
         startActivity(intent);
     }
 
