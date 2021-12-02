@@ -4,6 +4,10 @@ plugins {
 }
 
 android {
+    packagingOptions {
+        pickFirst  'META-INF/*'
+    }
+
     compileSdk 31
 
     defaultConfig {
