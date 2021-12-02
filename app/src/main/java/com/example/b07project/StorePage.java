@@ -52,19 +52,8 @@ public class StorePage extends AppCompatActivity {
                 }else{
                     //go through every product under the store owner
                     for(DataSnapshot child:task.getResult().getChildren()){
-                        if(!isCustomer){
-                            StoreOwner storeOwner = child.getValue(StoreOwner.class);
-                            if(storeOwner.getUsername().equals(username)){
-                                presenter.doNotMakeAccount();
-                                return;
-                            }
-                        }else{
-                            Customer customer = child.getValue(Customer.class);
-                            if(customer.getUsername().equals(username)){
-                                presenter.doNotMakeAccount();
-                                return;
-                            }
-                        }
+                        Product p = child.getValue(Product.class);
+
                     }
                 }
             }

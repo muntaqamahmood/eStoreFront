@@ -32,9 +32,20 @@ public class AccountCreationModel implements AccountCreationContract.Model{
                     //error getting data
                 }else{
                     for(DataSnapshot child:task.getResult().getChildren()){
-                        Product product = child.getValue(Product.class);
-
-                        
+                        if(!isCustomer){
+                            StoreOwner storeOwner = child.getValue(StoreOwner.class);
+                            if(storeOwner.getUsername().equals(username)){
+                                presenter.doNotMakeAccount();
+                                return;
+                            }
+                        }else{
+                            Customer customer = child.getValue(Customer.class);
+                            if(customer.getUsername().equals(username)){
+                                presenter.doNotMakeAccount();
+                                return;
+                            }
+                        }
+                        presenter.makeAccount(username, password, isCustomer);
                     }
 
                 }
