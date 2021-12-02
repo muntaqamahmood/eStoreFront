@@ -6,17 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class owner_add_product extends AppCompatActivity implements OwnerAddProductContract.OwnerAddProductView{
+
+    private OwnerAddProductContract.OwnerAddProductPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_add_product);
-    }
 
-    AddProductModel model = new AddProductModel();
-    OwnerAddProductPresenter presenter = new OwnerAddProductPresenter(model, this);
+        presenter = new OwnerAddProductPresenter(new AddProductModel(), this);
+    }
 
     @Override
     public String getProductName() {
@@ -36,13 +38,13 @@ public class owner_add_product extends AppCompatActivity implements OwnerAddProd
         return editText.getText().toString();
     }
 
-    @Override
-    public void displayMessage(String msg){
-        TextView textView = findViewById(R.id.txtAPStatus);
-        textView.setText(msg);
+    public void confirmButton(View view){
+        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("store_owner");
+        presenter.checkProductInputs(getProductName(),getBrandName(),getPrice(), owner);
     }
 
-    public void confirmButton(View view){
-        presenter.checkProductInputs(getProductName(),getBrandName(),getPrice());
+    public void feedback(String msg){
+        Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

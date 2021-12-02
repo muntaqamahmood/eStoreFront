@@ -9,25 +9,28 @@ public class OwnerAddProductPresenter implements OwnerAddProductContract.OwnerAd
     OwnerAddProductContract.OwnerAddProductModel model;
     OwnerAddProductContract.OwnerAddProductView view;
 
-    public OwnerAddProductPresenter(OwnerAddProductContract.OwnerAddProductModel model, OwnerAddProductContract.OwnerAddProductView view){
-        this.model = model;
-        this.view = view;
+    public OwnerAddProductPresenter(OwnerAddProductContract.OwnerAddProductModel Givenmodel, OwnerAddProductContract.OwnerAddProductView Givenview){
+        this.model = Givenmodel;
+        this.view = Givenview;
     }
 
     @Override
-    public void checkProductInputs(String product, String brand, String price){
+    public void checkProductInputs(String product, String brand, String price, StoreOwner owner){
         if(product.equals("")||brand.equals("")||price.equals("")){
             //one of the entries is empty
-            view.displayMessage("Entries cannot be empty!");
+            view.feedback("Entries cannot be empty!");
         }
         else if(!isPrice(price)) { //invalid price
-            view.displayMessage("Please enter a valid price!");
+            view.feedback("Please enter a valid price!");
         }
         else{
-            view.displayMessage("Good input!");
-
             //create the product and send it to the firebase
             Product p = new Product(product, brand, Float.parseFloat(price));
+
+            model.addProduct(p, owner);
+            view.feedback("Product Added!");
+
+            //send it back to the owner landing page
         }
     }
 
