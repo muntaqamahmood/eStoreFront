@@ -35,7 +35,6 @@ public class StorePage extends AppCompatActivity {
 
         //preparing variables to be used by the listview
         lstView = findViewById(R.id.lstProducts);
-        ArrayList<String> products = new ArrayList<>();
         ArrayAdapter<String> productsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         lstView.setAdapter(productsAdapter);
 
@@ -53,7 +52,9 @@ public class StorePage extends AppCompatActivity {
                     //go through every product under the store owner
                     for(DataSnapshot child:task.getResult().getChildren()){
                         Product p = child.getValue(Product.class);
+                        String productToAdd = p.toString();
 
+                        productsAdapter.add(productToAdd);
                     }
                 }
             }
