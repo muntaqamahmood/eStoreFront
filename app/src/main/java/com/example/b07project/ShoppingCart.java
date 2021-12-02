@@ -3,49 +3,71 @@ package com.example.b07project;
 import java.util.ArrayList;
 
 public class ShoppingCart extends Order{
-    private int cartId;
-    private int userId;
-    private int totalPrice;
-    private int totalQuantity;
-    ArrayList<Product> added_to_cart = new ArrayList<Product>();
-    ArrayList<Product> removed_from_cart = new ArrayList<Product>();
-    ArrayList<Product> updated_in_cart = new ArrayList<Product>();
-    boolean added;
-    boolean removed;
-    boolean updated;
-    boolean empty;
+    String userId;
+    String title;
+    String currency;
+    String price;
+    String quantity;
+    String total;
 
     public ShoppingCart(){
         System.out.println("Your shopping cart is empty.");
     }
 
-    public ShoppingCart(int cartId, int userId, int totalPrice, int totalQuantity) {
-        this.cartId = cartId;
+    public ShoppingCart(String userId, String title, String currency, String price, String quantity, String total) {
         this.userId = userId;
-        this.totalPrice = totalPrice;
-        this.totalQuantity = totalQuantity;
-    }
-    @Override
-    public void addItem(Product product) {
-        added_to_cart.add(product);
-    }
-
-    @Override
-    public void removeItem(Product product) {
-        removed_from_cart.remove(product);
+        this.title = title;
+        this.currency = currency;
+        this.price = price;
+        this.quantity = quantity;
+        this.total = total;
     }
 
-    public void updateCartadd(Product product) {
-        updated_in_cart.add(product);
+    public String getId() {
+        return userId;
     }
 
-    public void updateCartremove(Product product) {
-        updated_in_cart.remove(product);
+    public void setId(String userId) {
+        this.userId = userId;
     }
 
-    public void clearCart() {
-        added_to_cart.clear();
-        removed_from_cart.clear();
-        updated_in_cart.clear();
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getSubTotal() {
+        return total;
+    }
+
+    public void setSubTotal(String total) {
+        this.total = total;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }
