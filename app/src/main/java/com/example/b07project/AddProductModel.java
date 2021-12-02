@@ -7,7 +7,7 @@ public class AddProductModel implements OwnerAddProductContract.OwnerAddProductM
     //write the product to the database under the owner
     void addProduct(Product p, StoreOwner owner) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child(owner.getUsername()).child("Products").setValue(p);
+        ref.child("store owners").child(owner.getUsername()).child("Products").setValue(p);
     }
 
 
