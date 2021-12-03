@@ -65,8 +65,12 @@ public class StoreOwner extends Account implements Serializable {
         });
     }
 
-    public void addOrder(Order order){
+    //remove ALL products from the arraylist
+    void wipeProducts(){
+        products.clear();
+    }
 
+    public void addOrder(Order order){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
         if (!(order == null)){

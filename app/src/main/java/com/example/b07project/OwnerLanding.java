@@ -29,6 +29,8 @@ public class OwnerLanding extends AppCompatActivity {
     public void seePage(View view){
         //retrieve the store owner
         StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
+        //get products from firebase and put that into owner.products
+        owner.wipeProducts();
         owner.populateProducts();
 
         Intent intent = new Intent(this, StorePage.class);
