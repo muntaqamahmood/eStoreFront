@@ -23,16 +23,6 @@ public class Product implements Serializable {
 
     @Override
     public String toString(){
-        return name + ',' + brand +',' + price;
+        return brand + ' ' + name + ", $"  + price;
     }
-
-    /***
-    public String getName(){return name;}
-    public String getBrand(){return brand;}
-    public String getPrice(){return String.valueOf(price);}
-
-    public void setPrice(float price){this.price = price;}
-    public void setBrand(String brand){this.brand = brand;}
-    public void setPrice(String name){this.name = name;}
-     ***/
 }
