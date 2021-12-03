@@ -62,11 +62,13 @@ public class owner_add_product extends AppCompatActivity{
         }
     }
 
+    //displays a brief toast message
     public void feedback(String msg){
         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
         toast.show();
     }
 
+    //firebase will add the p onto the firebase under owner's Product child
     public void fireBase(StoreOwner owner, Product p){
         //add the product to the owner's list of products
         owner.addProduct(p);

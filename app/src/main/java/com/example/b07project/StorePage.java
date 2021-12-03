@@ -51,7 +51,6 @@ public class StorePage extends AppCompatActivity {
                     Log.e("B07 Project", "Couldn't get data", task.getException());
                 }else{
                     //go through every product under the store owner
-
                     //but make sure the product list is not empty
                     if(task.getResult().getChildren() == null){
                         feedback("Products not found");

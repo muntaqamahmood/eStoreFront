@@ -41,11 +41,7 @@
         </activity>
         <activity
             android:name=".owner_add_product"
-            android:parentActivityName=".OwnerLanding">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OwnerLanding" />
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".AccountCreationActivity"
             android:parentActivityName=".MainActivity">
