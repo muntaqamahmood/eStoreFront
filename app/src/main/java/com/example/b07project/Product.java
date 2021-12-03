@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
-    String name;
-    String brand;
-    float price;
+    public String name;
+    public String brand;
+    public float price;
 
     public Product(){}
 
@@ -23,7 +23,6 @@ public class Product implements Serializable {
 
     @Override
     public String toString(){
-        return name + ',' + brand +',' + price;
+        return brand + ' ' + name + ", $"  + price;
     }
-
 }
