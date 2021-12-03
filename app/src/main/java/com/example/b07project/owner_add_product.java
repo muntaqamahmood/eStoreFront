@@ -50,6 +50,15 @@ public class owner_add_product extends AppCompatActivity{
         if(isGood){
             Product p = new Product(productName, brandName, Float.parseFloat(price));
             fireBase(owner, p);
+            feedback("Product added");
+
+            //reset the editText
+            EditText txtProduct = findViewById(R.id.txtProductName);
+            txtProduct.setText("");
+            EditText txtBrand = findViewById(R.id.txtBrandName);
+            txtBrand.setText("");
+            EditText txtPrice = findViewById(R.id.txtPrice);
+            txtPrice.setText("");
         }
     }
 

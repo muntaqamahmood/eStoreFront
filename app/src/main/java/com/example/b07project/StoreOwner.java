@@ -27,5 +27,4 @@ public class StoreOwner extends Account implements Serializable {
     public void addProduct(Product p){
         products.add(p);
     }
-
 }
