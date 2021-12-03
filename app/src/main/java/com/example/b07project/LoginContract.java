@@ -1,7 +1,5 @@
 package com.example.b07project;
 
-import android.content.Context;
-
 public interface LoginContract {
 
     public interface Model{

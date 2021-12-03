@@ -26,33 +26,52 @@ public class ExampleUnitTest {
     @Mock
     LoginModel model;
 
-
     @Test
-    public void testLoginPresenter(){
-        LoginPresenter presenter = new LoginPresenter(view,model);
+    public void testCheckValidLogin(){
 
         /*** stubbing ***/
-        /*
         when(view.getUsername()).thenReturn("testing");
         when(view.getPassword()).thenReturn("L12345");
-        doCallRealMethod().when(model).correctCredentials("testing", "L12345", false);
+        /****************/
 
-        doAnswer(invocation -> {
-            String username = invocation.getArgumentAt(0,String.class);
-            String password = invocation.getArgumentAt(1,String.class);
-            boolean isCustomer = invocation.getArgumentAt(2, boolean.class);
-
-            assertEquals(username,"testing");
-            assertEquals(password,"L12345");
-            assertEquals(isCustomer, false);
-
-            return  null;
-        }).when(model).correctCredentials();
-
-
+        LoginPresenter presenter = new LoginPresenter(view,model);
         presenter.checkValidLogin(false);
-        verify(view).result("Login Successful");
-        */
+        verify(model).correctCredentials("testing","L12345", false);
+
     }
+
+    @Test
+    public void testLogin1(){
+        /*** stubbing ***/
+        doNothing().when(view).result("Login Successful");
+        /****************/
+
+        LoginPresenter presenter = new LoginPresenter(view,model);
+
+        StoreOwner storeOwner = new StoreOwner("testing","L12345");
+        presenter.login(storeOwner);
+        verify(view).startOwnerLanding(storeOwner);
+    }
+
+    @Test
+    public void testLogin2(){
+        /*** stubbing ***/
+        doNothing().when(view).result("Login Successful");
+        /****************/
+
+        LoginPresenter presenter = new LoginPresenter(view,model);
+
+        Customer customer = new Customer("That_Guy", "Bdjf");
+        presenter.login(customer);
+        verify(view).startCustomerLanding(customer);
+    }
+
+    @Test
+    public void testDoNotLogin(){
+        LoginPresenter presenter = new LoginPresenter(view,model);
+        presenter.doNotLogin();
+        verify(view).result("Incorrect username, password, or both");
+    }
+
 
 }

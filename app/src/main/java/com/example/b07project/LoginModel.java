@@ -1,8 +1,5 @@
 package com.example.b07project;
 
-import android.view.View;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -12,7 +9,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginModel implements LoginContract.Model{
-
     LoginContract.Presenter presenter;
 
     @Override
