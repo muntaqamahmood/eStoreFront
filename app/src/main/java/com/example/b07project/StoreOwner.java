@@ -1,8 +1,11 @@
 package com.example.b07project;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class StoreOwner extends Account implements Serializable {
+
+    ArrayList<Product> products = new ArrayList<>();
 
     public StoreOwner() {
     }
@@ -19,5 +22,9 @@ public class StoreOwner extends Account implements Serializable {
     public void setUsername(String username){this.username = username;}
 
     public void setPassword(String password){this.password = password;}
+
+    public void addProduct(Product p){
+        products.add(p);
+    }
 
 }
