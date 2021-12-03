@@ -114,4 +114,5 @@
     <string name="all_orders">All Orders</string>
     <string name="list_View"></string>
     <string name="view_stores">All Stores</string>
+    <string name="view_orders">View Orders</string>
 </resources>
