@@ -1,5 +1,7 @@
 package com.example.b07project;
 
+import android.content.Context;
+
 public interface LoginContract {
 
     public interface Model{
@@ -16,7 +18,9 @@ public interface LoginContract {
     public interface View{
         public String getUsername();
         public String getPassword();
-        public void result(Account account);
+        public void result(String message);
+        public void startOwnerLanding(StoreOwner storeOwner);
+        public void startCustomerLanding(Customer customer);
     }
 
 }

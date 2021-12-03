@@ -40,7 +40,7 @@ public class AccountCreationPresenter implements AccountCreationContract.Present
     @Override
     public void makeAccount(String username, String password, boolean isCustomer){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        if(!isCustomer){
+        if(!isCustomer){                                                      //future: if(account.getClass() == StoreOwner.class()){
             StoreOwner storeOwner = new StoreOwner(username, password);       //future: storeOwner = (StoreOwner)account;
             ref.child("store owners").child(username).setValue(storeOwner);
         }else{

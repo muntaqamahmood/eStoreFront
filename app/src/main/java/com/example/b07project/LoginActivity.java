@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,45 +25,37 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         isCustomer = intent.getBooleanExtra("account_type", true);
     }
 
-    public void checkLogin(View view){
+    public void checkLogin(View view){                          //enter button
         presenter.checkValidLogin(isCustomer);
     }
 
     @Override
-    public String getUsername() {
+    public String getUsername() {                               //return username entered
         TextView textView = findViewById(R.id.txtUname);
         return textView.getText().toString();
     }
 
     @Override
-    public String getPassword() {
+    public String getPassword() {                               //return password entered
         TextView textView = findViewById(R.id.txtPword);
         return textView.getText().toString();
     }
 
     @Override
-    public void result(Account account) {
-        TextView result = findViewById(R.id.lblOutcome);
-        result.setText("");
-        ///want this in Presenter
-        if(account != null){
-            StoreOwner accountToLogin;
-            Toast toast = Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG);
-            toast.show();
-            ///want to put intent stuff into Presenter
-            if(StoreOwner.class == account.getClass()){
-                Intent intent = new Intent(this, OwnerLanding.class);
-                accountToLogin = (StoreOwner) account;
-                intent.putExtra("account", accountToLogin);
-                startActivity(intent);
-            }
-            else{
-                //make it of class Customer
-            }
-            ///
-        }else{
-            result.setText("Incorrect username, password, or both");
-        }
+    public void result(String message) {                       //displays the result based on what presenter passed in
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
+        toast.show();
+    }
 
+    @Override
+    public void startOwnerLanding(StoreOwner storeOwner) {
+       Intent intent = new Intent(this, OwnerLanding.class);
+       intent.putExtra("account", storeOwner);
+       startActivity(intent);
+    }
+
+    @Override
+    public void startCustomerLanding(Customer customer) {
+        //start Customer Landing
     }
 }

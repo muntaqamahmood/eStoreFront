@@ -45,8 +45,9 @@ public class AccountCreationModel implements AccountCreationContract.Model{
                                 return;
                             }
                         }
-                        presenter.makeAccount(username, password, isCustomer);
+
                     }
+                    presenter.makeAccount(username, password, isCustomer);
 
                 }
             }
