@@ -62,16 +62,9 @@ public class owner_add_product extends AppCompatActivity{
 
         owner.addProduct(p);
         String username = owner.getUsername();
-        /*** actual stuff
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("store owners").child(username).child("Products").setValue(owner.products);
-         ***/
-        ArrayList<String> testArray = new ArrayList<>();
-        testArray.add("a");
-        testArray.add("b");
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("store owners").child(username).child("Products").setValue(testArray);
+        ref.child("store owners").child(username).child("Products").setValue(owner.products);
     }
 
 
