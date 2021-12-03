@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
+            android:name=".viewStores"
+            android:exported="false" />
+        <activity
             android:name=".StorePage"
             android:parentActivityName=".OwnerLanding">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OwnerLanding"/>
+                android:value=".OwnerLanding" />
         </activity>
         <activity
             android:name=".CheckoutActivity"

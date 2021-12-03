@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class StoreOwner extends Account implements Serializable {
 
     ArrayList<Product> products = new ArrayList<>();
+    ArrayList<Order> orders = new ArrayList<Order>();
 
     public StoreOwner() {
     }
