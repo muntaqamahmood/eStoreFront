@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,14 +51,25 @@ public class StorePage extends AppCompatActivity {
                     Log.e("B07 Project", "Couldn't get data", task.getException());
                 }else{
                     //go through every product under the store owner
-                    for(DataSnapshot child:task.getResult().getChildren()){
-                        Product p = child.getValue(Product.class);
-                        String productToAdd = p.toString();
 
-                        productsAdapter.add(productToAdd);
+                    //but make sure the product list is not empty
+                    if(task.getResult().getChildren() == null){
+                        feedback("Products not found");
+                    }else {
+                        for (DataSnapshot child : task.getResult().getChildren()) {
+                            Product p = child.getValue(Product.class);
+                            String productToAdd = p.toString();
+
+                            productsAdapter.add(productToAdd);
+                        }
                     }
                 }
             }
         });
+    }
+
+    public void feedback(String msg){
+        Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
