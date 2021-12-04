@@ -31,37 +31,37 @@
         android:hint="Your Name"
 
         />
+
     <EditText
         android:id="@+id/shippment_phone_number"
-        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/shippment_name"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
         android:hint="Your Phone Number"
-        />
+        android:inputType="number" />
+
     <EditText
         android:id="@+id/shippment_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/shippment_phone_number"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:hint="Your Home Address"
-        />
+        android:hint="Your Home Address" />
+
     <EditText
         android:id="@+id/shippment_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/shippment_address"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:hint="Your City Name"
-        />
+        android:hint="Your City Name" />
 
     <Button
         android:id="@+id/confirm_final_order_btn"
@@ -72,8 +72,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/white"
         android:text="Confirm"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/white"
         android:textSize="30dp" />
 </RelativeLayout>
