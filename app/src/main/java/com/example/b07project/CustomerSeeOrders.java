@@ -12,6 +12,6 @@ public class CustomerSeeOrders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_see_orders);
         customer = (Customer) getIntent().getSerializableExtra("account");
-        
+
     }
 }

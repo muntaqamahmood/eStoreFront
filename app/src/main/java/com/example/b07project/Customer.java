@@ -1,6 +1,10 @@
 package com.example.b07project;
 
+import java.util.ArrayList;
+
 public class Customer extends Account {
+
+    ArrayList<CustomerOrder> allOrders = new ArrayList<>();
 
     public Customer(){}
 
