@@ -36,10 +36,9 @@ public class Customer extends Account {
     public void wipeAllOrders(){allOrders.clear();}
 
     //populateAllOrders will pull CustomerOrders from firebase and put it in allOrders
-    void populateAllorders() {
+    public void populateAllorders() {
         //read the database
-/**
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("customers").child(username).child("Products");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("customers").child(username).child("Orders");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -50,15 +49,18 @@ public class Customer extends Account {
                     //go through every product under the store owner
                     if (task.getResult().getChildren() != null) {
                         for (DataSnapshot child : task.getResult().getChildren()) {
-                            Product p = child.getValue(Product.class);
-                            products.add(p);
+                            CustomerOrder c = child.getValue(CustomerOrder.class);
+                            allOrders.add(c);
                         }
                     }
 
                 }
             }
         });
- **/
+    }
+
+    public void addOrder(CustomerOrder c){
+        allOrders.add(c);
     }
 
 }
