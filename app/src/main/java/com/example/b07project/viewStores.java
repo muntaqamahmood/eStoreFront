@@ -1,13 +1,11 @@
 package com.example.b07project;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,7 +20,7 @@ public class viewStores extends AppCompatActivity {
 //    private ArrayList<String> str_stores;
     private ArrayAdapter<String> storesAdapter;
     private ListView listView;
-    private ArrayList<String> stores;
+    private ArrayList<String> stores = new ArrayList<>();
 
 //    private void items_to_str(ArrayList<Order> o){
 //        str_stores = new ArrayList<String>();

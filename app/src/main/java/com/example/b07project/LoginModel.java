@@ -12,9 +12,9 @@ public class LoginModel implements LoginContract.Model{
     LoginContract.Presenter presenter;
 
     @Override
-    public void correctCredentials(String username, String password, boolean isCustomer) {      //checks if username and password passed in
-        FirebaseDatabase database = FirebaseDatabase.getInstance();                             //has something coinciding with it in the database
-        DatabaseReference ref;                                                                  //and if credentials match
+    public void correctCredentials(String username, String password, boolean isCustomer) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref;
         if(!isCustomer)
             ref = database.getReference("store owners");
         else
