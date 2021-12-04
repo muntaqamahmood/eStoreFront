@@ -34,4 +34,16 @@ public class CustomerOrder implements Serializable {
     public void deleteProduct(Product p){
         items.remove(p);
     }
+
+    @Override
+    public String toString(){
+        String output = "";
+        if (!items.isEmpty()){
+            for (Product p: items){
+                output += p.toString() + ", ";
+            }
+            output += "from " + storeOwner;
+        }
+        return output;
+    }
 }
