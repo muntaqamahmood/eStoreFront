@@ -18,7 +18,7 @@ public class Product implements Serializable {
 
     @Override
     public int hashCode(){
-        return (int)(name.length() + price* 100);
+        return (int)(name.length() + brand.length()* 100);
     }
 
     @Override
