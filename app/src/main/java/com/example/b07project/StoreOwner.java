@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class StoreOwner extends Account implements Serializable {
 
     ArrayList<Product> products = new ArrayList<>();;
-    ArrayList<Order> orders = new ArrayList<>();
+    ArrayList<CustomerOrder> orders = new ArrayList<>();
 
     public StoreOwner() {
     }
@@ -70,12 +70,10 @@ public class StoreOwner extends Account implements Serializable {
         products.clear();
     }
 
-    public void addOrder(Order order){
+    public void addOrder(CustomerOrder order){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        orders.add(order);
+        ref.child("store owners").child(username).child("Orders").setValue(orders);
 
-        if (!(order == null)){
-            orders.add(order);
-            ref.child("store owners").child(username).child("Orders").setValue(orders);
-        }
     }
 }
