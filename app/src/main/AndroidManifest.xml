@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
+            android:name=".CustomerSeeOrders"
+            android:exported="false" />
+        <activity
             android:name=".OrderConfirmationActivity"
             android:exported="false" />
         <activity
