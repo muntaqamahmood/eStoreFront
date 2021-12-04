@@ -54,10 +54,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity
+        <!--<activity
             android:name=".ui.login.AccountCreateActivity"
             android:exported="false"
-            android:label="@string/title_activity_account_create" />
+            android:label="@string/title_activity_account_create" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true">
