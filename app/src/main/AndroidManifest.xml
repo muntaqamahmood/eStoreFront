@@ -13,6 +13,9 @@
             android:name=".viewStores"
             android:exported="false" />
         <activity
+            android:name=".Customer_Landing"
+            android:exported="false" />
+        <activity
             android:name=".StorePage"
             android:exported="false">
         </activity>

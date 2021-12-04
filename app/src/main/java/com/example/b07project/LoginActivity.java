@@ -57,5 +57,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void startCustomerLanding(Customer customer) {
         //start Customer Landing
+        Intent intent = new Intent(this, Customer_Landing.class);
+        intent.putExtra("account", customer);
+        startActivity(intent);
     }
 }
