@@ -16,9 +16,6 @@
             android:name=".CustomerSeeOrders"
             android:exported="false" />
         <activity
-            android:name=".OrderConfirmationActivity"
-            android:exported="false" />
-        <activity
             android:name=".viewStores"
             android:exported="false" />
         <activity
@@ -26,9 +23,6 @@
             android:exported="false" />
         <activity
             android:name=".StorePage"
-            android:exported="false" />
-        <activity
-            android:name=".ShoppingCartActivity"
             android:exported="false" />
         <activity
             android:name=".ViewAllOrdersActivity"
