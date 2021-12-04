@@ -24,16 +24,16 @@ public class Customer_Landing extends AppCompatActivity {
     public void viewAllStores(View view){
         customer = (Customer) getIntent().getSerializableExtra("account");
 
-        Intent intent = new Intent(this, ShoppingCartActivity.class);//<- we need a viewAllStores page for the customer too if we dont already
-        intent.putExtra("store_owner", customer);//ShoppingCartActivity ^ is just a place holder for now
+        Intent intent = new Intent(this, ShoppingCartActivity.class);
+        intent.putExtra("customer", customer);
         startActivity(intent);
     }
     public void seeOrders(View view){
         //customer can see their past Orders
         customer = (Customer) getIntent().getSerializableExtra("account");
 
-        Intent intent = new Intent(this,ShoppingCartActivity.class);//<-- we need an order history page for customer
-        intent.putExtra("account", customer);//ShoppingCartActivity ^ is just a place holder for now
-        startActivity(intent);//gonna take a shower rn meet u guys at 10am hopefully i can work on this, commenting to lyg know before commit
+        Intent intent = new Intent(this,ShoppingCartActivity.class);
+        intent.putExtra("account", customer);
+        startActivity(intent);
     }
 }
