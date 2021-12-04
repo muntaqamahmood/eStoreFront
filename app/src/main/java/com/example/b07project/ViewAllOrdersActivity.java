@@ -1,11 +1,20 @@
 package com.example.b07project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -60,8 +69,29 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 //
 //            }
 //        }
+        ordersAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        listView.setAdapter(ordersAdapter);
 
+        ref.child(owner.getUsername()).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!(task.isSuccessful())){
+                    //error
+                }else{
+                    if (task.getResult().hasChildren()) {
+                        for (DataSnapshot child : task.getResult().getChildren()) {
+                            StoreOwner storeOwner = child.getValue(StoreOwner.class);
+                            if (storeOwner != null) {
+                                Log.i("test",storeOwner.getUsername());
+                                ordersAdapter.add(storeOwner.getUsername());
+                                //stores.add(storeOwner.getUsername());
 
+                            }
+                        }
+                    }
+                }
+            }
+        });
 //        ref.child(owner.getUsername()).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -73,37 +103,34 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-//
+
 //        items_to_str(orders);
-//
-//        ordersAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,str_orders);
-//        listView.setAdapter(ordersAdapter);
-//
-//        setUpListViewListener();
-//
-//
-//    }
-//
-//    private void setUpListViewListener() {
-//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
-//                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
-//                Context context = getApplicationContext();
-//
-//                ref.child(owner.getUsername()).child("Orders");
-//
-//                orders.remove(position);
-//                Toast.makeText(context,"Item Removed", Toast.LENGTH_LONG).show();
-//
-//                ref.child(owner.getUsername()).child("Orders").setValue(orders);
-//
-//                ordersAdapter.notifyDataSetChanged();
-//                return true;
-//
-//            }
-//        });
+
+
+
+        setUpListViewListener();
+
+
     }
+    private void setUpListViewListener(){
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
+                Context context = getApplicationContext();
+
+                ref.child(owner.getUsername()).child("Orders");
+
+                orders.remove(position);
+                Toast.makeText(context,"Item Removed!",Toast.LENGTH_LONG).show();
+
+                ref.child(owner.getUsername()).child("Orders").setValue(orders);
+
+                ordersAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
+    }
+
 }
