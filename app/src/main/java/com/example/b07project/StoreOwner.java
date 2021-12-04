@@ -48,7 +48,7 @@ public class StoreOwner extends Account implements Serializable {
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                //incase we cant get that value
+                //in case we cant get that value
                 if (!task.isSuccessful()) {
                     Log.e("B07 Project", "Couldn't get data", task.getException());
                 } else {

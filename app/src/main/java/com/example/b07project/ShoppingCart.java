@@ -2,22 +2,21 @@ package com.example.b07project;
 
 
 public class ShoppingCart {
-    private String pid,pname,price,brand,discount;
+    private String pid,pname,brand,price;
 
+    // constructors for ShoppingCart
     public ShoppingCart() {
     }
 
-    public ShoppingCart(String pid, String pname, String price, String brand, String discount) {
+    public ShoppingCart(String pid, String pname, String brand, String price) {
         this.pid = pid;
         this.pname = pname;
-        this.price = price;
         this.brand = brand;
-        this.discount = discount;
+        this.price = price;
     }
 
-    public String getPid() {
-        return pid;
-    }
+    // getters and setters for ShoppingCart variables
+    public String getPid() { return pid; }
 
     public void setPid(String pid) {
         this.pid = pid;
@@ -31,6 +30,14 @@ public class ShoppingCart {
         this.pname = pname;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public String getPrice() {
         return price;
     }
@@ -39,19 +46,4 @@ public class ShoppingCart {
         this.price = price;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setQuantity(String brand) {
-        this.brand = brand;
-    }
-
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount;
-    }
 }

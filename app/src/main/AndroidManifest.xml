@@ -22,9 +22,6 @@
             android:name=".StorePage"
             android:exported="false" />
         <activity
-            android:name=".CheckoutActivity"
-            android:exported="false" />
-        <activity
             android:name=".ShoppingCartActivity"
             android:exported="false" />
         <activity

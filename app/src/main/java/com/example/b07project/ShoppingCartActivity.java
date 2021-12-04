@@ -75,8 +75,8 @@ public class ShoppingCartActivity extends AppCompatActivity{
                 holder.txtProductBrand.setText("Brand = "+model.getBrand());
                 holder.txtProductPrice.setText("Price = "+model.getPrice()+" Rs.");
                 holder.txtProductName.setText(model.getPname());
-                int oneTyprProductTPrice = ((Integer.valueOf(model.getPrice())))* Integer.valueOf(model.getBrand());
-                TotalPrice += oneTyprProductTPrice;
+                int oneTypeProductTPrice = ((Integer.valueOf(model.getPrice())))* Integer.valueOf(model.getBrand());
+                TotalPrice += oneTypeProductTPrice;
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -142,12 +142,12 @@ public class ShoppingCartActivity extends AppCompatActivity{
                     String shippingState = dataSnapshot.child("state").getValue().toString();
                     String userName = dataSnapshot.child("name").getValue().toString();
                     if (shippingState.equals("Shipped")){
-                        TotalAmount.setText("TDear "+userName+"\n order is shipped successfully.");
+                        TotalAmount.setText("TDear "+userName+"\n your order has been shipped for pick up.");
                         recyclerView.setVisibility(View.GONE);
                         Message1.setVisibility(View.VISIBLE);
-                        Message1.setText("Congratulations, Your Final order has been shipped successfully. Soon you will received your order at your door step.");
+                        Message1.setText("Congratulations, Your Final order is ready for pickup.");
                         NextProcessButton.setVisibility(View.GONE);
-                        Toast.makeText(ShoppingCartActivity.this,"You can purchase more products, Once you received your first order",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShoppingCartActivity.this,"You can purchase more products.",Toast.LENGTH_SHORT).show();
                     }
                     else if (shippingState.equals("Not Shipped")){
                         TotalAmount.setText("Shipping State = Not Shipped");
@@ -155,7 +155,7 @@ public class ShoppingCartActivity extends AppCompatActivity{
                         Message1.setVisibility(View.VISIBLE);
 
                         NextProcessButton.setVisibility(View.GONE);
-                        Toast.makeText(ShoppingCartActivity.this,"You can purchase more products, Once you received your first order",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShoppingCartActivity.this,"You can purchase more products while we get your order ready for pick up.",Toast.LENGTH_SHORT).show();
                     }
                 }
             }

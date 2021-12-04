@@ -71,10 +71,8 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd. yyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime = currentDate.format(calForDate.getTime());
-        final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference()
-                .child("Orders")
-                .child(UserCart.CurrentCustomer.getUsername());
+        saveCurrentTime = currentTime.format(calForDate.getTime());
+        final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference().child("Orders").child(UserCart.CurrentCustomer.getUsername());
         HashMap<String, Object> ordersMap = new HashMap<>();
         ordersMap.put("totalAmount",totalAmount);
         ordersMap.put("name",nameEditText.getText().toString());
@@ -88,12 +86,9 @@ public class OrderConfirmationActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    FirebaseDatabase.getInstance().getReference()
-                            .child("Cart List")
-                            .child("User view")
-                            .child(UserCart.CurrentCustomer.getUsername())
-                            .removeValue()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    FirebaseDatabase.getInstance().getReference().child("Cart List")
+                            .child("User view").child(UserCart.CurrentCustomer.getUsername())
+                            .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
