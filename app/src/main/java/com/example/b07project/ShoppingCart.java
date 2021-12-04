@@ -1,42 +1,34 @@
 package com.example.b07project;
 
-import java.util.ArrayList;
 
-public class ShoppingCart extends Order{
-    String userId;
-    String title;
-    String currency;
-    String price;
-    String quantity;
-    String total;
+public class ShoppingCart {
+    private String pid,pname,price,brand,discount;
 
-    public ShoppingCart(){
-        System.out.println("Your shopping cart is empty.");
+    public ShoppingCart() {
     }
 
-    public ShoppingCart(String userId, String title, String currency, String price, String quantity, String total) {
-        this.userId = userId;
-        this.title = title;
-        this.currency = currency;
+    public ShoppingCart(String pid, String pname, String price, String brand, String discount) {
+        this.pid = pid;
+        this.pname = pname;
         this.price = price;
-        this.quantity = quantity;
-        this.total = total;
+        this.brand = brand;
+        this.discount = discount;
     }
 
-    public String getId() {
-        return userId;
+    public String getPid() {
+        return pid;
     }
 
-    public void setId(String userId) {
-        this.userId = userId;
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
-    public String getTitle() {
-        return title;
+    public String getPname() {
+        return pname;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPname(String pname) {
+        this.pname = pname;
     }
 
     public String getPrice() {
@@ -47,27 +39,19 @@ public class ShoppingCart extends Order{
         this.price = price;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setQuantity(String brand) {
+        this.brand = brand;
     }
 
-    public String getSubTotal() {
-        return total;
+    public String getDiscount() {
+        return discount;
     }
 
-    public void setSubTotal(String total) {
-        this.total = total;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 }

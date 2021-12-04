@@ -45,6 +45,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.5.2'
+    implementation 'com.firebaseui:firebase-ui-database:6.0.2'
     testImplementation 'junit:junit:4.+'
     testImplementation 'org.mockito:mockito-all:1.10.19'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

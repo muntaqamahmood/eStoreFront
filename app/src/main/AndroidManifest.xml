@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
+            android:name=".OrderConfirmationActivity"
+            android:exported="false" />
+        <activity
             android:name=".viewStores"
             android:exported="false" />
         <activity
@@ -17,8 +20,7 @@
             android:exported="false" />
         <activity
             android:name=".StorePage"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".CheckoutActivity"
             android:exported="false" />
@@ -44,7 +46,7 @@
         </activity>
         <activity
             android:name=".owner_add_product"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".AccountCreationActivity"
             android:parentActivityName=".MainActivity">
