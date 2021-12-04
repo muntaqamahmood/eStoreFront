@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
+            android:name=".ShoppingCartActivity"
+            android:exported="false" />
+        <activity
             android:name=".CustomerViewProduct"
             android:exported="false" />
         <activity
