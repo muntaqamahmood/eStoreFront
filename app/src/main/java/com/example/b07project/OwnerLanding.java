@@ -42,7 +42,7 @@ public class OwnerLanding extends AppCompatActivity {
         //retrieve the store owner
         StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
 
-        Intent intent = new Intent(this,viewOrders.class);
+        Intent intent = new Intent(this,ViewAllOrdersActivity.class);
         intent.putExtra("account", owner);
         startActivity(intent);
     }
