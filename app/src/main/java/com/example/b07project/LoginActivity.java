@@ -27,28 +27,32 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     public void checkLogin(View view){                          //enter button
         presenter.checkValidLogin(isCustomer);
-    }
+    }   //login button
 
     @Override
-    public String getUsername() {                               //return username entered
+    public String getUsername() {
+        //return username entered
         TextView textView = findViewById(R.id.txtUname);
         return textView.getText().toString();
     }
 
     @Override
-    public String getPassword() {                               //return password entered
+    public String getPassword() {
+        //return password entered
         TextView textView = findViewById(R.id.txtPword);
         return textView.getText().toString();
     }
 
     @Override
-    public void result(String message) {                       //displays the result based on what presenter passed in
+    public void result(String message) {
+        //displays the result based on what presenter passed in
         Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
         toast.show();
     }
 
     @Override
     public void startOwnerLanding(StoreOwner storeOwner) {
+       //start Owner Landing
        Intent intent = new Intent(this, OwnerLanding.class);
        intent.putExtra("account", storeOwner);
        startActivity(intent);
