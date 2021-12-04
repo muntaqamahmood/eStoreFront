@@ -32,7 +32,7 @@ public class Customer_Landing extends AppCompatActivity {
         //customer can see their past Orders
         customer = (Customer) getIntent().getSerializableExtra("account");
 
-        Intent intent = new Intent(this,ShoppingCartActivity.class);
+        Intent intent = new Intent(this,CustomerSeeOrders.class);
         intent.putExtra("account", customer);
         startActivity(intent);
     }
