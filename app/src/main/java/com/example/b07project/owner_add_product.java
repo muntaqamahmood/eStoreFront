@@ -38,6 +38,7 @@ public class owner_add_product extends AppCompatActivity{
         return editText.getText().toString();
     }
 
+    //will add the product onto the firebase and owner's product field
     public void confirmButton(View view){
         StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("store_owner");
 
@@ -45,12 +46,14 @@ public class owner_add_product extends AppCompatActivity{
         String brandName = getBrandName();
         String price = getPrice();
 
+        //check if the inputs are valid
         boolean isGood = checkProductInputs(productName,brandName,price);
 
         if(isGood){
+            //create the new product and add it to firebase and owner's products
             Product p = new Product(productName, brandName, Float.parseFloat(price));
             fireBase(owner, p);
-            feedback("Product added");
+            feedback("Product Added!");
 
             //reset the editText
             EditText txtProduct = findViewById(R.id.txtProductName);
@@ -79,8 +82,7 @@ public class owner_add_product extends AppCompatActivity{
         ref.child("store owners").child(username).child("Products").setValue(owner.products);
     }
 
-
-    /*** WAS FROM THE PRESENTER ***/
+    //check if the inputs from the textviews are valid
     public boolean checkProductInputs(String product, String brand, String price){
         if(product.equals("")||brand.equals("")||price.equals("")){
             //one of the entries is empty

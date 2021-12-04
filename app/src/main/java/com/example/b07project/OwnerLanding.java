@@ -16,7 +16,7 @@ public class OwnerLanding extends AppCompatActivity {
 
 
 
-    //addProduct will send the user to the UI for adding a product
+    //addProduct will send the user to the activity for adding a product
     public void addProduct(View view){
         //retrieve the store owner
         StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
@@ -26,6 +26,7 @@ public class OwnerLanding extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //seePage sends the user to view their own store
     public void seePage(View view){
         //retrieve the store owner
         StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
