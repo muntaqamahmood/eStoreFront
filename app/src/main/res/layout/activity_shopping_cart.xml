@@ -53,8 +53,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Next"
-        android:textColor="@android:color/white"
+        android:text="Place Order"
+        android:textColor="@color/white"
         android:textSize="25dp"
 
 
