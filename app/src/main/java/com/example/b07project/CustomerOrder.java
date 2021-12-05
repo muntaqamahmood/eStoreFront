@@ -9,12 +9,14 @@ public class CustomerOrder implements Serializable {
     ArrayList<Product> items = new ArrayList<>();
     public String storeOwner;
     public Boolean completed;
+    public String customer;
 
     public CustomerOrder(){}
 
     /** a new CustomerOrder should be made whenever a customer wants to buy an item from a store**/
-    public CustomerOrder(String owner){
+    public CustomerOrder(String owner, String customer){
         storeOwner = owner;
+        this.customer = customer;
     }
 
     /** This is for the owner to mark complete or not **/
