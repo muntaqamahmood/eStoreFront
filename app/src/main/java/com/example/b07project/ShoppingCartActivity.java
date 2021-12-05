@@ -8,16 +8,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ShoppingCartActivity extends AppCompatActivity {
     private Customer customer;
@@ -45,33 +38,30 @@ public class ShoppingCartActivity extends AppCompatActivity {
         ArrayAdapter<Product> productsAdapter = new ArrayAdapter<Product>(this, android.R.layout.simple_list_item_1);
         lstView = findViewById(R.id.cartListView);
         lstView.setAdapter(productsAdapter);
-        for(order.items : ){
-
+        if(order.items != null){
+            for(Product p: order.items){
+                productsAdapter.add(p);
+            }
         }
         orderBtn = (Button)findViewById(R.id.orderButton);
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(state.equals("Order successful!")||state.equals("Order ready for pickup!")){
                     Toast.makeText(ShoppingCartActivity.this, "You can now pick up your order", Toast.LENGTH_LONG).show();
-                }else{
-                    addedToCart();
                 }
             }
         });
     }
-    @Override
-    protected void onStart(){
-        super.onStart();
-        checkOrder;
-    }
-    private void addedToCart(){
+
+   /* private void addedToCart(){
         final DatabaseReference refToCartList = FirebaseDatabase.getInstance().getReference().child("Cart List");
         final HashMap<String, Object>cartMap = new HashMap<>();
         cartMap.put("name", productName.getText().toString());
         cartMap.put("brand", productBrand.getText().toString());
         cartMap.put("price", productPrice.getText().toString());
-        cartMap.put("orderNumber", productOrderNumber);
+        //cartMap.put("orderNumber", productOrderNumber);
 
         refToCartList.child("Customer view").child(customer.getUsername()).child("Products").child(productOrderNumber).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -82,7 +72,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
 
 

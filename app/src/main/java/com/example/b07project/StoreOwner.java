@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class StoreOwner extends Account implements Serializable {
 
     ArrayList<Product> products = new ArrayList<>();;
-    ArrayList<CustomerOrder> orders = new ArrayList<>();
+    ArrayList<CustomerOrder> orders = new ArrayList<>();//
 
     public StoreOwner() {
     }

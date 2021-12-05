@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Customer extends Account {
 
-    ArrayList<CustomerOrder> allOrders = new ArrayList<>();
+    ArrayList<CustomerOrder> allOrders = new ArrayList<>();//
 
     public Customer(){}
 
