@@ -87,7 +87,7 @@ public class CustomerViewStore extends AppCompatActivity {
     }
 
     //checkout will send the user to the checkout activity
-    public void checkout(){ //uncomment when shadman connects his stuff
+    public void checkout(){
 
         Intent intent = new Intent(this, ShoppingCartActivity.class);
         intent.putExtra("customer", customer);

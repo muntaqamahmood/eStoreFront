@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -97,8 +98,6 @@ public class viewStores extends AppCompatActivity {
 ////        {"avik", "shadman"};
 
         setUpListViewListener(stores);
-
-
     }
 
     private void setUpListViewListener(ArrayList<StoreOwner> s) {
@@ -116,9 +115,8 @@ public class viewStores extends AppCompatActivity {
 //        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
         intent.putExtra("store_owner", store);
 
-        Customer customer = (Customer) getIntent().getSerializableExtra("account") ;
+        Customer customer = (Customer) getIntent().getSerializableExtra("customer") ;
         intent.putExtra("customer",customer);
-
         startActivity(intent);
     }
 }

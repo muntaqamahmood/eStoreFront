@@ -10,9 +10,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Customer extends Account {
+public class Customer extends Account implements Serializable {
 
     ArrayList<CustomerOrder> allOrders = new ArrayList<>();//
 
