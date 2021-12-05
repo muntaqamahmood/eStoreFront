@@ -1,7 +1,6 @@
 package com.example.b07project;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -114,10 +113,10 @@ public class viewStores extends AppCompatActivity {
         Intent intent = new Intent(this, CustomerViewStore.class);
 
 //        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
-        intent.putExtra(Resources.getSystem().getString(R.string.store_owner), store);
+        intent.putExtra("store_owner", store);
 
-        Customer customer = (Customer) getIntent().getSerializableExtra(Resources.getSystem().getString(R.string.customer)) ;
-        intent.putExtra(Resources.getSystem().getString(R.string.customer),customer);
+        Customer customer = (Customer) getIntent().getSerializableExtra("customer") ;
+        intent.putExtra("customer",customer);
         startActivity(intent);
     }
 }

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,7 +43,7 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_all_orders);
 
         listView = findViewById(R.id.listView);
-        owner = (StoreOwner) getIntent().getSerializableExtra(Resources.getSystem().getString(R.string.store_owner));
+        owner = (StoreOwner) getIntent().getSerializableExtra("account");
 
 //        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
 //        ValueEventListener listener = new ValueEventListener() {
@@ -145,6 +144,7 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
                 Context context = getApplicationContext();
 

@@ -2,7 +2,6 @@ package com.example.b07project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -41,7 +40,7 @@ public class owner_add_product extends AppCompatActivity{
 
     //will add the product onto the firebase and owner's product field
     public void confirmButton(View view){
-        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra(Resources.getSystem().getString(R.string.store_owner));
+        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("store_owner");
 
         String productName = getProductName();
         String brandName = getBrandName();

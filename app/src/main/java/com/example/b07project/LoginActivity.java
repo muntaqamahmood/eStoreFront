@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -58,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void startOwnerLanding(StoreOwner storeOwner) {
        //start Owner Landing
        Intent intent = new Intent(this, OwnerLanding.class);
-       intent.putExtra(Resources.getSystem().getString(R.string.store_owner), storeOwner);
+       intent.putExtra("account", storeOwner);
        startActivity(intent);
     }
 
@@ -66,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void startCustomerLanding(Customer customer) {
         //start Customer Landing
         Intent intent = new Intent(this, Customer_Landing.class);
-        intent.putExtra(Resources.getSystem().getString(R.string.customer), customer);
+        intent.putExtra("account", customer);
         startActivity(intent);
     }
 }

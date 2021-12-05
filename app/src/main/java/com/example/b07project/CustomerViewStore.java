@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,8 +35,8 @@ public class CustomerViewStore extends AppCompatActivity {
 
         //receive intents from previous activity
         //get the accounts from previous activity
-        owner = (StoreOwner) getIntent().getSerializableExtra(Resources.getSystem().getString(R.string.store_owner));
-        customer = (Customer) getIntent().getSerializableExtra(Resources.getSystem().getString(R.string.customer));
+        owner = (StoreOwner) getIntent().getSerializableExtra("store_owner");
+        customer = (Customer) getIntent().getSerializableExtra("customer");
         //set the label to be the username
         TextView txtStore = findViewById(R.id.lblStoreName);
         txtStore.setText(owner.getUsername());
@@ -92,8 +91,8 @@ public class CustomerViewStore extends AppCompatActivity {
     public void checkout(){
 
         Intent intent = new Intent(this, ShoppingCartActivity.class);
-        intent.putExtra(Resources.getSystem().getString(R.string.customer), customer);
-        intent.putExtra(Resources.getSystem().getString(R.string.store_owner), owner);
+        intent.putExtra("customer", customer);
+        intent.putExtra("store_owner", owner);
         intent.putExtra("order", order);
     }
 
