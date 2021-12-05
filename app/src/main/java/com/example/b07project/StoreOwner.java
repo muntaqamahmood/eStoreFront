@@ -65,9 +65,34 @@ public class StoreOwner extends Account implements Serializable {
         });
     }
 
+    //populateOrders will read CustomerOrders from the firebase and put them in orders (field)
+    void populateOrders(){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(username).child("Orders");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful())
+                    Log.e("B07 Project", "Couldn't get data", task.getException());
+                else{
+                    if(task.getResult().getChildren() != null) {
+                        for (DataSnapshot child : task.getResult().getChildren()) {
+                            CustomerOrder customerOrder = child.getValue(CustomerOrder.class);
+                            orders.add(customerOrder);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
     //remove ALL products from the arraylist
     void wipeProducts(){
         products.clear();
+    }
+
+    //remove All orders from the arraylist
+    void wipeOrders(){
+        orders.clear();
     }
 
     public void addOrder(CustomerOrder order){

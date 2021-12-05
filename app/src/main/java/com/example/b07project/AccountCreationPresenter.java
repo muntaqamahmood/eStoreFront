@@ -23,7 +23,7 @@ public class AccountCreationPresenter implements AccountCreationContract.Present
         Matcher passwordMatcher = passwordPattern.matcher(password);
 
         if(!userMatcher.matches()) {
-            message += "Username invalid, must contain at least 3 letters, numbers, or underscores. ";
+            message += "Username invalid, must contain at least 3 letters, numbers, or underscores (no spaces).";
         }
         if(!passwordMatcher.matches()) {
             message += "Password invalid, must contain at least 1 uppercase letter.";
