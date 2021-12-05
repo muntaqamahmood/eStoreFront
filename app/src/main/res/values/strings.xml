@@ -115,4 +115,5 @@
     <string name="list_View"></string>
     <string name="view_stores">All Stores</string>
     <string name="view_orders">View Orders</string>
+    <string name="title_activity_customer_view_store">CustomerViewStore</string>
 </resources>
