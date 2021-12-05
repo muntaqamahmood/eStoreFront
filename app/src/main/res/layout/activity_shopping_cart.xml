@@ -13,7 +13,9 @@
         android:layout_marginTop="16dp"
         android:text="Shopping Cart"
         android:textAlignment="center"
+        android:textColor="#673AB7"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,11 +39,10 @@
 
     <Button
         android:id="@+id/orderButton"
-        android:layout_width="180dp"
-        android:layout_height="36dp"
+        android:layout_width="178dp"
+        android:layout_height="40dp"
         android:text="Place Order"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="561dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
