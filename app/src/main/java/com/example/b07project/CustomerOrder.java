@@ -10,7 +10,8 @@ public class CustomerOrder implements Serializable {
     public String storeOwner;
     public Boolean completed;
     public String customer;
-    public static int orderNumber = 0;
+    public static int totalOrders = 0;
+    public int orderNumber;
 
     public CustomerOrder(){}
 
@@ -18,7 +19,8 @@ public class CustomerOrder implements Serializable {
     public CustomerOrder(String owner, String customer){
         storeOwner = owner;
         this.customer = customer;
-        orderNumber++;
+        orderNumber = totalOrders;
+        totalOrders++;
     }
 
     /** This is for the owner to mark complete or not **/
