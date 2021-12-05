@@ -28,7 +28,6 @@ public class CustomerViewStore extends AppCompatActivity {
     private Customer customer;
     private CustomerOrder order;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,19 +65,20 @@ public class CustomerViewStore extends AppCompatActivity {
                 }
             }
         });
-        order = new CustomerOrder();
-        //setupListViewListener();
+        order = new CustomerOrder(owner.getUsername());
+        setupListViewListener();
     }
-    /**
+
     private void setupListViewListener() {
         lstView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Product productToAdd = (Product) lstView.getItemAtPosition(position);
+                order.addToCart(productToAdd);
             }
         });
     }
-     **/
+
 
     //feedback will display a short message to the user
     public void feedback(String msg){
@@ -88,11 +88,11 @@ public class CustomerViewStore extends AppCompatActivity {
 
     //checkout will send the user to the checkout activity
     public void checkout(){ //uncomment when shadman connects his stuff
-        /***
-        Intent intent = new Intent(this, "next activityname. class");
+
+        Intent intent = new Intent(this, ShoppingCartActivity.class);
         intent.putExtra("customer", customer);
         intent.putExtra("store_owner", owner);
-         ***/
+        intent.putExtra("order", order);
     }
 
 }
