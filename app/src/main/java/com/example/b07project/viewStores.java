@@ -116,7 +116,7 @@ public class viewStores extends AppCompatActivity {
 //        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
         intent.putExtra("store_owner", store);
 
-        Customer customer = (Customer) getIntent().getSerializableExtra("account") ;
+        Customer customer = (Customer) getIntent().getSerializableExtra("customer") ;
         intent.putExtra("customer",customer);
 
         startActivity(intent);

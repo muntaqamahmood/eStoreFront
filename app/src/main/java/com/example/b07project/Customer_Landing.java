@@ -25,6 +25,7 @@ public class Customer_Landing extends AppCompatActivity {
         customer = (Customer) getIntent().getSerializableExtra("account");
 
         Intent intent = new Intent(this, viewStores.class);
+        customer = (Customer) getIntent().getSerializableExtra("account");
         intent.putExtra("customers", customer);
         startActivity(intent);
     }
