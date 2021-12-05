@@ -10,6 +10,7 @@ public class CustomerOrder implements Serializable {
     public String storeOwner;
     public Boolean completed;
     public String customer;
+    public static int orderNumber = 0;
 
     public CustomerOrder(){}
 
@@ -17,6 +18,7 @@ public class CustomerOrder implements Serializable {
     public CustomerOrder(String owner, String customer){
         storeOwner = owner;
         this.customer = customer;
+        orderNumber++;
     }
 
     /** This is for the owner to mark complete or not **/
@@ -41,11 +43,17 @@ public class CustomerOrder implements Serializable {
     public String toString(){
         String output = "";
         if (!items.isEmpty()){
+            output += "#" + orderNumber + ": ";
             for (Product p: items){
                 output += p.toString() + ", ";
             }
             output += "from " + storeOwner;
         }
         return output;
+    }
+
+    @Override
+    public int hashCode(){
+        return orderNumber;
     }
 }
