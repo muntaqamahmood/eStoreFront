@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class viewStores extends AppCompatActivity {
 
-    private ArrayList<String> stores = new ArrayList<String>();
+    private ArrayList<StoreOwner> stores = new ArrayList<StoreOwner>();
 //    private ArrayList<String> str_stores;
     private ListView lstView;
 
@@ -60,8 +60,9 @@ public class viewStores extends AppCompatActivity {
                             StoreOwner storeOwner = child.getValue(StoreOwner.class);
                             if (storeOwner != null) {
                                 Log.i("test",storeOwner.getUsername());
+
                                 storesAdapter.add(storeOwner.getUsername());
-                                //stores.add(storeOwner.getUsername());
+                                stores.add(storeOwner);
 
                             }
                         }
@@ -95,25 +96,25 @@ public class viewStores extends AppCompatActivity {
 //        str.add("shadman");
 ////        {"avik", "shadman"};
 
-        setUpListViewListener();
+        setUpListViewListener(stores);
 
 
     }
 
-    private void setUpListViewListener() {
+    private void setUpListViewListener(ArrayList<StoreOwner> s) {
         lstView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                OpenCustomerViewStore();
+                OpenCustomerViewStore(s.get(position));
             }
         });
     }
 
-    public void OpenCustomerViewStore(){
+    public void OpenCustomerViewStore(StoreOwner store){
         Intent intent = new Intent(this, CustomerViewStore.class);
 
-        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
-        intent.putExtra("store_owner", owner);
+//        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
+        intent.putExtra("store_owner", store);
 
         Customer customer = (Customer) getIntent().getSerializableExtra("account") ;
         intent.putExtra("customer",customer);
