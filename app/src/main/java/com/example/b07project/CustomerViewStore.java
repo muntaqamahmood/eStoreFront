@@ -3,8 +3,12 @@ package com.example.b07project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,45 +20,44 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 
-public class StorePage extends AppCompatActivity {
+public class CustomerViewStore extends AppCompatActivity {
 
     private StoreOwner owner;
     private ListView lstView;
+    private Customer customer;
+    private CustomerOrder order;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_page);
+        setContentView(R.layout.activity_customer_view_store);
 
-        //get the owner
+        //receive intents from previous activity
+        //get the accounts from previous activity
         owner = (StoreOwner) getIntent().getSerializableExtra("store_owner");
+        customer = (Customer) getIntent().getSerializableExtra("customer");
         //set the label to be the username
-        TextView textView = findViewById(R.id.txtStorePage);
-        textView.setText(owner.getUsername());
+        TextView txtStore = findViewById(R.id.lblStoreName);
+        txtStore.setText(owner.getUsername());
 
         //preparing variables to be used by the listview
         lstView = findViewById(R.id.lstProducts);
         ArrayAdapter<Product> productsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         lstView.setAdapter(productsAdapter);
 
-        //go thru the database (under this owner)
-        //get the products into the arraylist using toString
-
-        //read the database
+        //read the database and populate the listview with products
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(owner.getUsername()).child("Products");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()){
+                if (!task.isSuccessful()) {
                     Log.e("B07 Project", "Couldn't get data", task.getException());
-                }else{
+                } else {
                     //go through every product under the store owner
                     //but make sure the product list is not empty
-                    if(task.getResult().getChildren() == null){
-                        feedback("Products not found");
-                    }else {
+                    if (task.getResult().getChildren() != null) {
                         for (DataSnapshot child : task.getResult().getChildren()) {
                             Product p = child.getValue(Product.class);
                             productsAdapter.add(p);
@@ -63,10 +66,33 @@ public class StorePage extends AppCompatActivity {
                 }
             }
         });
+        order = new CustomerOrder();
+        //setupListViewListener();
     }
+    /**
+    private void setupListViewListener() {
+        lstView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public boolean onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            }
+        });
+    }
+     **/
+
+    //feedback will display a short message to the user
     public void feedback(String msg){
         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
         toast.show();
     }
+
+    //checkout will send the user to the checkout activity
+    public void checkout(){ //uncomment when shadman connects his stuff
+        /***
+        Intent intent = new Intent(this, "next activityname. class");
+        intent.putExtra("customer", customer);
+        intent.putExtra("store_owner", owner);
+         ***/
+    }
+
 }
