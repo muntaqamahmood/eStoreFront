@@ -34,7 +34,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         lstView = findViewById(R.id.productListView);
         lstView.setAdapter(productsAdapter);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("store owners").child(storeOwner.getUsername()).child("Products").;
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("store owners").child(storeOwner.getUsername()).child("Products");
         reference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {

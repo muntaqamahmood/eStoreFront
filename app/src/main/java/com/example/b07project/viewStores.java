@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +24,6 @@ public class viewStores extends AppCompatActivity {
 
     private ArrayList<String> stores = new ArrayList<String>();
 //    private ArrayList<String> str_stores;
-
     private ListView lstView;
 
 
@@ -104,8 +104,20 @@ public class viewStores extends AppCompatActivity {
         lstView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                OpenCustomerViewStore();
             }
         });
+    }
+
+    public void OpenCustomerViewStore(){
+        Intent intent = new Intent(this, CustomerViewStore.class);
+
+        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
+        intent.putExtra("store_owner", owner);
+
+        Customer customer = (Customer) getIntent().getSerializableExtra("account") ;
+        intent.putExtra("customer",customer);
+
+        startActivity(intent);
     }
 }
