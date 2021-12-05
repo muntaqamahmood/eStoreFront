@@ -3,6 +3,7 @@ package com.example.b07project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -29,7 +30,7 @@ public class StorePage extends AppCompatActivity {
         setContentView(R.layout.activity_store_page);
 
         //get the owner
-        owner = (StoreOwner) getIntent().getSerializableExtra("store_owner");
+        owner = (StoreOwner) getIntent().getSerializableExtra(Resources.getSystem().getString(R.string.store_owner));
         //set the label to be the username
         TextView textView = findViewById(R.id.txtStorePage);
         textView.setText(owner.getUsername());

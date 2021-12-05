@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -28,8 +29,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
 
-        customer = (Customer) getIntent().getSerializableExtra("customer");
-        storeOwner = (StoreOwner)getIntent().getSerializableExtra("store_owner");
+        customer = (Customer) getIntent().getSerializableExtra(Resources.getSystem().getString(R.string.customer));
+        storeOwner = (StoreOwner)getIntent().getSerializableExtra(Resources.getSystem().getString(R.string.store_owner));
         order = (CustomerOrder) getIntent().getSerializableExtra("order");
         productName = (TextView)findViewById(R.id.txtProductName);
         productBrand = (TextView)findViewById(R.id.txtBrandName);
