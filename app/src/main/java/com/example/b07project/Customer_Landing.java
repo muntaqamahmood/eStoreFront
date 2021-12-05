@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,17 +23,14 @@ public class Customer_Landing extends AppCompatActivity {
         txtCustomerName.setText(customer.getUsername());
     }
     public void viewAllStores(View view){
-        customer = (Customer) getIntent().getSerializableExtra("account");
-
         Intent intent = new Intent(this, viewStores.class);
+
         customer = (Customer) getIntent().getSerializableExtra("account");
-        intent.putExtra("customers", customer);
+        intent.putExtra("customer", customer); //customer is NOT null
         startActivity(intent);
     }
+    //customer can see their past Orders
     public void seeOrders(View view){
-        //customer can see their past Orders
-        customer = (Customer) getIntent().getSerializableExtra("account");
-
         //wipe and repopulate the Customer's orders to make sure theyre up to date
         customer.wipeAllOrders();
         customer.populateAllorders();
