@@ -75,6 +75,7 @@ public class CustomerViewStore extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Product productToAdd = (Product) lstView.getItemAtPosition(position);
                 order.addToCart(productToAdd);
+                feedback("Added " + productToAdd.toString());
             }
         });
     }
