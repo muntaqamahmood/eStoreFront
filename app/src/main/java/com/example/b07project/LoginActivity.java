@@ -23,6 +23,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         model.setPresenter(presenter);
         Intent intent = getIntent();
         isCustomer = intent.getBooleanExtra("account_type", true);
+
+        TextView lbl = findViewById(R.id.lblLogin);
+        lbl.setText("LOGIN");
     }
 
     public void checkLogin(View view){                          //enter button
