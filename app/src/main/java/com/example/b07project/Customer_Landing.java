@@ -32,6 +32,10 @@ public class Customer_Landing extends AppCompatActivity {
         //customer can see their past Orders
         customer = (Customer) getIntent().getSerializableExtra("account");
 
+        //wipe and repopulate the Customer's orders to make sure theyre up to date
+        customer.wipeAllOrders();
+        customer.populateAllorders();
+
         Intent intent = new Intent(this,CustomerSeeOrders.class);
         intent.putExtra("account", customer);
         startActivity(intent);
