@@ -122,15 +122,8 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 
                         //make sure it's not an empty order
                         if (order.items != null) {
-                            //denote the ordernumber
-                            ordersAdapter.add("OrderNumber: " + order.orderNumber + sectionBreak);
-                            //show the products in the order
-                            for (Product p : order.items) {
-                                ordersAdapter.add(p.toString());
-                            }
-                            //show the status of the order
-                            String custSignature = "From: " + order.customer + " ,Status: " + order.completed + sectionBreak;
-                            ordersAdapter.add(custSignature);
+                            String line =  formatOrder(order);
+                            ordersAdapter.add(line);
                         }
                     }
                 }
@@ -219,4 +212,13 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
         });
     }
 
+
+    private String formatOrder(CustomerOrder order){
+        String output = "OrderNumber: " + order.orderNumber + ", From: " + order.customer + '\n';
+        for (Product p: order.items){
+            output += p.toString() + '\n';
+        }
+        output+= "Completed: " + order.completed;
+        return output;
+    }
 }
