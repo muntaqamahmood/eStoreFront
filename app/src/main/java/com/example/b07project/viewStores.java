@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class viewStores extends AppCompatActivity {
@@ -113,6 +111,8 @@ public class viewStores extends AppCompatActivity {
         Intent intent = new Intent(this, CustomerViewStore.class);
 
 //        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
+        store.wipeOrders();
+        store.populateOrders();
         intent.putExtra("store_owner", store);
 
         Customer customer = (Customer) getIntent().getSerializableExtra("customer") ;
