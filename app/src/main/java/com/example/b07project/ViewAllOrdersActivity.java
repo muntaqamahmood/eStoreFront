@@ -1,6 +1,7 @@
 package com.example.b07project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -109,6 +110,9 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 
                 //ref.child(owner.getUsername()).child("Orders").setValue(owner.orders);
 //              ordersAdapter.notifyDataSetChanged();
+                Intent intent = new Intent(ViewAllOrdersActivity.this, OwnerLanding.class);
+                intent.putExtra("account", owner);
+                startActivity(intent);
 
                 return true;
 
