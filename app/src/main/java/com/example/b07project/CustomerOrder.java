@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 /** this class is for customers to make orders from individual stores **/
 /** this can also be used by owners to keep track of orders and mark them complete **/
@@ -30,6 +31,7 @@ public class CustomerOrder implements Serializable {
         this.customer = customer;
         items = new ArrayList<>();
         completed = false;
+        orderNumber = fetchOrderCount();
     }
 
     /** This is for the owner to mark complete or not **/
@@ -68,25 +70,10 @@ public class CustomerOrder implements Serializable {
         return orderNumber;
     }
 
-    //gets the order count from firebase
+    //generates an orderNumber using the current time
     public int fetchOrderCount(){
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("OrderCount");
-        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("B07 Project", "Couldn't get data", task.getException());
-                } else {
-                    if (task.getResult().getChildren() != null) {
-                        int orderNumber = ((Long) task.getResult().child("number").getValue()).intValue();
-                        //increment the ordernumber
-                        DatabaseReference refIncrement = FirebaseDatabase.getInstance().getReference();
-                        refIncrement.child("OrderCount").child("number").setValue(orderNumber + 1);
-                    }
-                }
-            }
-        });
-        return orderNumber;
+        int time  = (int) (new Date().getTime() / 1000);
+        return time;
     }
 
 }

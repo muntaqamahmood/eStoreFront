@@ -65,7 +65,6 @@ public class CustomerViewStore extends AppCompatActivity {
             }
         });
         order = new CustomerOrder(owner.getUsername(), customer.getUsername());
-        order.fetchOrderCount();
         setupListViewListener();
     }
 
