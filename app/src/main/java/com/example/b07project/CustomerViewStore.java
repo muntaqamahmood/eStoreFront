@@ -88,6 +88,11 @@ public class CustomerViewStore extends AppCompatActivity {
 
     //checkout will send the user to the checkout activity
     public void checkout(View view){
+//        customer.wipeAllOrders();
+//        customer.populateAllorders();
+//
+//        owner.wipeOrders();
+//        owner.populateOrders();
         Intent intent = new Intent(this, ShoppingCartActivity.class);
         intent.putExtra("customer", customer);
         intent.putExtra("store_owner", owner);

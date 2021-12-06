@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,8 +25,6 @@ public class Customer_Landing extends AppCompatActivity {
     public void viewAllStores(View view){
         Intent intent = new Intent(this, viewStores.class);
 
-        customer.wipeAllOrders();
-        customer.populateAllorders();
         intent.putExtra("customer", customer); //customer is NOT null
         startActivity(intent);
     }

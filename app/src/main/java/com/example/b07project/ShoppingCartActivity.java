@@ -3,6 +3,7 @@ package com.example.b07project;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -50,19 +51,23 @@ public class ShoppingCartActivity extends AppCompatActivity {
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                customer.allOrders.add(order);
-                DatabaseReference reference =  FirebaseDatabase.getInstance().getReference();
-                reference.child("customers").child(order.customer).child("Orders").setValue(customer.allOrders);
+//                if(customer.allOrders.isEmpty())
+//                    Log.i("abracadabra", "empty");
 
-                storeOwner.orders.add(order);
-                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference();
-                reference2.child("store owners").child(order.storeOwner).child("Orders").setValue(storeOwner.orders);
+                customer.populateAddWriteOrders(order);
+//                customer.allOrders.add(order);
+//                DatabaseReference reference =  FirebaseDatabase.getInstance().getReference();
+//                reference.child("customers").child(order.customer).child("Orders").setValue(customer.allOrders);
 
-                Context context = getApplicationContext();
-                Toast.makeText(context,"Order Placed!",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(ShoppingCartActivity.this, Customer_Landing.class);
-                intent.putExtra("account", customer);
-                startActivity(intent);
+//                storeOwner.orders.add(order);
+//                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference();
+//                reference2.child("store owners").child(order.storeOwner).child("Orders").setValue(storeOwner.orders);
+//
+//                Context context = getApplicationContext();
+//                Toast.makeText(context,"Order Placed!",Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(ShoppingCartActivity.this, Customer_Landing.class);
+//                intent.putExtra("account", customer);
+//                startActivity(intent);
 
                 /*if(state.equals("Order successful!")||state.equals("Order ready for pickup!")){
                     Toast.makeText(ShoppingCartActivity.this, "You can now pick up your order", Toast.LENGTH_LONG).show();
