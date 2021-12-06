@@ -65,6 +65,34 @@ public class StoreOwner extends Account implements Serializable {
         });
     }
 
+    void populateAddWriteProducts(Product p){
+        //read the database
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(username).child("Products");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                //in case we cant get that value
+                if (!task.isSuccessful()) {
+                    Log.e("B07 Project", "Couldn't get data", task.getException());
+                } else {
+                    wipeProducts();
+                    //go through every product under the store owner
+                    if (task.getResult().getChildren() != null) {
+                        for (DataSnapshot child : task.getResult().getChildren()) {
+                            Product p = child.getValue(Product.class);
+                            products.add(p);
+                        }
+                    }
+                    addProduct(p);
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                    ref.child("store owners").child(username).child("Products").setValue(products);
+                }
+            }
+        });
+
+    }
+
     //populateOrders will read CustomerOrders from the firebase and put them in orders (field)
     void populateOrders(){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(username).child("Orders");
@@ -74,12 +102,15 @@ public class StoreOwner extends Account implements Serializable {
                 if(!task.isSuccessful())
                     Log.e("B07 Project", "Couldn't get data", task.getException());
                 else{
+                    wipeProducts();
                     if(task.getResult().getChildren() != null) {
                         for (DataSnapshot child : task.getResult().getChildren()) {
                             CustomerOrder customerOrder = child.getValue(CustomerOrder.class);
                             orders.add(customerOrder);
                         }
                     }
+
+
                 }
             }
         });
