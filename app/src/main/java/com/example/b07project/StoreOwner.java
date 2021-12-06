@@ -41,30 +41,6 @@ public class StoreOwner extends Account implements Serializable {
         products.add(p);
     }
 
-    //populateProducts will read products from the firebase and put them in products (field)
-    void populateProducts() {
-        //read the database
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(username).child("Products");
-        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                //in case we cant get that value
-                if (!task.isSuccessful()) {
-                    Log.e("B07 Project", "Couldn't get data", task.getException());
-                } else {
-                    //go through every product under the store owner
-                    if (task.getResult().getChildren() != null) {
-                        for (DataSnapshot child : task.getResult().getChildren()) {
-                            Product p = child.getValue(Product.class);
-                            products.add(p);
-                        }
-                    }
-
-                }
-            }
-        });
-    }
 
     void populateAddWriteProducts(Product p){
         //read the database
