@@ -107,8 +107,6 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 
 //        items_to_str(orders);
 
-        //display();
-
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(owner.username).child("Orders");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override

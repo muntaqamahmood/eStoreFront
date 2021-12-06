@@ -45,19 +45,23 @@ public class CustomerSeeOrders extends AppCompatActivity {
 
                         //make sure it's not an empty order
                         if (order.items != null) {
-                            //denote the ordernumber
-                            ordersAdapter.add("OrderNumber: " + order.orderNumber + sectionBreak);
-                            //show the products in the order
-                            for (Product p : order.items) {
-                                ordersAdapter.add(p.toString());
+                            if (order.items != null) {
+                                String line =  formatOrder(order);
+                                ordersAdapter.add(line);
                             }
-                            //show the status of the order
-                            String ownerSignature = "From: " + order.storeOwner + " ,Status: " + order.completed + sectionBreak;
-                            ordersAdapter.add(ownerSignature);
                         }
                     }
                 }
             }
         });
+    }
+
+    private String formatOrder(CustomerOrder order){
+        String output = "OrderNumber: " + order.orderNumber + ", From: " + order.storeOwner + '\n';
+        for (Product p: order.items){
+            output += p.toString() + '\n';
+        }
+        output+= "Completed: " + order.completed;
+        return output;
     }
 }
