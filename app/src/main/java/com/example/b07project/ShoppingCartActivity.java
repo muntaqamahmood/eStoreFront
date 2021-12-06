@@ -1,11 +1,12 @@
 package com.example.b07project;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,8 +19,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private ArrayList<Product> products = new ArrayList<Product>();
     private ListView lstView;
     private Button orderBtn;
-    /*private TextView productName, productBrand, productPrice;
-    private String state = "Normal";*/
+    private TextView productName, productBrand, productPrice;
+
+    private String state = "Normal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +31,12 @@ public class ShoppingCartActivity extends AppCompatActivity {
         customer = (Customer) getIntent().getSerializableExtra("customer");
         storeOwner = (StoreOwner)getIntent().getSerializableExtra("store_owner");
         order = (CustomerOrder) getIntent().getSerializableExtra("order");
-        /*productName = (TextView)findViewById(R.id.txtProductName);
+        productName = (TextView)findViewById(R.id.txtProductName);
         productBrand = (TextView)findViewById(R.id.txtBrandName);
-        productPrice = (TextView)findViewById(R.id.txtPrice);*/
+        productPrice = (TextView)findViewById(R.id.txtPrice);
 
         ArrayAdapter<Product> productsAdapter = new ArrayAdapter<Product>(this, android.R.layout.simple_list_item_1);
-        lstView = findViewById(R.id.lstProducts);
+        lstView = findViewById(R.id.cartListView);
         lstView.setAdapter(productsAdapter);
         if(order.items != null){
             for(Product p: order.items){
@@ -45,24 +47,13 @@ public class ShoppingCartActivity extends AppCompatActivity {
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(state.equals("Order successful!")||state.equals("Order ready for pickup!")){
+
+                if(state.equals("Order successful!")||state.equals("Order ready for pickup!")){
                     Toast.makeText(ShoppingCartActivity.this, "You can now pick up your order", Toast.LENGTH_LONG).show();
-                }*/
-
-                //Customer customer = (Customer)getIntent().getSerializableExtra("")
-
-                StoreOwner storeOwner = (StoreOwner)getIntent().getSerializableExtra("account");
-                Intent intent = new Intent(ShoppingCartActivity.this, ViewAllOrdersActivity.class);
-                intent.putExtra("order", order);
-                startActivity(intent);
-                finish();
+                }
             }
         });
     }
-
-
-
-
 
    /* private void addedToCart(){
         final DatabaseReference refToCartList = FirebaseDatabase.getInstance().getReference().child("Cart List");
@@ -81,7 +72,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
 
 
@@ -89,5 +80,5 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
     private void getProductDetails(){
 
-    }*/
+    }
 }
