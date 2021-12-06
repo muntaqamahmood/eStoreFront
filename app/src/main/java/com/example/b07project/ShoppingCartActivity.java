@@ -24,6 +24,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private ArrayList<Product> products = new ArrayList<Product>();
     private ListView lstView;
     private Button orderBtn;
+    private Button backBtn;
 
 //   private TextView productName, productBrand, productPrice;
 //   private String state = "Normal";
@@ -47,27 +48,33 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 productsAdapter.add(p);
             }
         }
+        backBtn = (Button)findViewById((R.id.btnBackToLanding));
+        backBtn.setVisibility(View.INVISIBLE);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShoppingCartActivity.this, Customer_Landing.class);
+                intent.putExtra("account", customer);
+                startActivity(intent);
+            }
+        });
+
         orderBtn = (Button)findViewById(R.id.orderButton);
+
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(customer.allOrders.isEmpty())
-//                    Log.i("abracadabra", "empty");
+
+                backBtn.setVisibility(View.VISIBLE);
+                orderBtn.setVisibility(View.INVISIBLE);
+                Context context = getApplicationContext();
+                Toast.makeText(context,"Order Placed!",Toast.LENGTH_LONG).show();
 
                 customer.populateAddWriteOrders(order);
-//                customer.allOrders.add(order);
-//                DatabaseReference reference =  FirebaseDatabase.getInstance().getReference();
-//                reference.child("customers").child(order.customer).child("Orders").setValue(customer.allOrders);
 
-//                storeOwner.orders.add(order);
-//                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference();
-//                reference2.child("store owners").child(order.storeOwner).child("Orders").setValue(storeOwner.orders);
-//
-//                Context context = getApplicationContext();
-//                Toast.makeText(context,"Order Placed!",Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(ShoppingCartActivity.this, Customer_Landing.class);
-//                intent.putExtra("account", customer);
-//                startActivity(intent);
+                storeOwner.populateAddWriteOrders(order);
+
 
                 /*if(state.equals("Order successful!")||state.equals("Order ready for pickup!")){
                     Toast.makeText(ShoppingCartActivity.this, "You can now pick up your order", Toast.LENGTH_LONG).show();

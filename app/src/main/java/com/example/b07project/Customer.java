@@ -71,6 +71,7 @@ public class Customer extends Account implements Serializable {
                 if (!task.isSuccessful()) {
                     Log.e("B07 Project", "Couldn't get data", task.getException());
                 } else {
+                    wipeAllOrders();
                     //go through every product under the store owner
                     if (task.getResult().getChildren() != null) {
                         for (DataSnapshot child : task.getResult().getChildren()) {

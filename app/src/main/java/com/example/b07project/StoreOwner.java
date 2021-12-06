@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class StoreOwner extends Account implements Serializable {
 
     ArrayList<Product> products = new ArrayList<>();;
-    ArrayList<CustomerOrder> orders = new ArrayList<>();//
+    ArrayList<CustomerOrder> orders = new ArrayList<>();
 
     public StoreOwner() {
     }
@@ -80,6 +80,30 @@ public class StoreOwner extends Account implements Serializable {
                             orders.add(customerOrder);
                         }
                     }
+                }
+            }
+        });
+    }
+
+    void populateAddWriteOrders(CustomerOrder order){
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(username).child("Orders");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful())
+                    Log.e("B07 Project", "Couldn't get data", task.getException());
+                else{
+                    wipeOrders();
+                    if(task.getResult().getChildren() != null) {
+                        for (DataSnapshot child : task.getResult().getChildren()) {
+                            CustomerOrder customerOrder = child.getValue(CustomerOrder.class);
+                            orders.add(customerOrder);
+                        }
+                    }
+                    orders.add(order);
+                    DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference();
+                    reference2.child("store owners").child(order.storeOwner).child("Orders").setValue(orders);
                 }
             }
         });
