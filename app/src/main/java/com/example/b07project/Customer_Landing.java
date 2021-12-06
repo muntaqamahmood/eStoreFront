@@ -2,7 +2,6 @@ package com.example.b07project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -36,6 +35,10 @@ public class Customer_Landing extends AppCompatActivity {
 
         Intent intent = new Intent(this,CustomerSeeOrders.class);
         intent.putExtra("account", customer);
+        startActivity(intent);
+    }
+    public void customerLogOut(View v){
+        Intent intent = new Intent(Customer_Landing.this, MainActivity.class);
         startActivity(intent);
     }
 }

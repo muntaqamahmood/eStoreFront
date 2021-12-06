@@ -50,4 +50,8 @@ public class OwnerLanding extends AppCompatActivity {
         intent.putExtra("account", owner);
         startActivity(intent);
     }
+    public void storeOwnerLogOut(View view){
+        Intent intent = new Intent(OwnerLanding.this, MainActivity.class);
+        startActivity(intent);
+    }
 }
