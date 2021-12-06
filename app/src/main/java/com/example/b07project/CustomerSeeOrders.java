@@ -18,7 +18,6 @@ public class CustomerSeeOrders extends AppCompatActivity {
 
     private Customer customer;
     private ListView lstView;
-    private final String sectionBreak = "-----------------------------";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -22,18 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ViewAllOrdersActivity extends AppCompatActivity {
     
-    private ArrayAdapter<String> ordersAdapter;
+    private ArrayAdapter<CustomerOrder> ordersAdapter;
     private ListView listView;
     private StoreOwner owner;
-    private final String sectionBreak = "--------------";
-//    private ArrayList<Order> orders;
-
-//    private void items_to_str(ArrayList<Order> o){
-//        str_orders = new ArrayList<String>();
-//        for(Order i:o){
-//            str_orders.add(i.toString());
-//        }
-//    }
 
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
@@ -43,70 +34,10 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         owner = (StoreOwner) getIntent().getSerializableExtra("account");
 
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
-//        ValueEventListener listener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                ref.child(owner.getUsername()).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                        if(!task.isSuccessful()){
-//                            Context context = getApplicationContext();
-//                            Toast.makeText(context,"Error getting data", Toast.LENGTH_LONG).show();
-//                        }else{
-//                            orders = (ArrayList<Order>)task.getResult().getValue();
-//                        }
-//                    }
-//                });
-//
-//                items_to_str(orders);
-//
-//                ordersAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,str_orders);
-//                listView.setAdapter(ordersAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        }
-        ordersAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        ordersAdapter = new ArrayAdapter<CustomerOrder>(this, android.R.layout.simple_list_item_1);
         listView.setAdapter(ordersAdapter);
 
-//        ref.child(owner.getUsername()).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if (!(task.isSuccessful())){
-//                    //error
-//                }else{
-//                    if (task.getResult().hasChildren()) {
-//                        for (DataSnapshot child : task.getResult().getChildren()) {
-//                            StoreOwner storeOwner = child.getValue(StoreOwner.class);
-//                            if (storeOwner != null) {
-//                                Log.i("test",storeOwner.getUsername());
-//                                ordersAdapter.add(storeOwner.getUsername());
-//                                //stores.add(storeOwner.getUsername());
-//
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        });
-//        ref.child(owner.getUsername()).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if(!task.isSuccessful()){
-//                    Context context = getApplicationContext();
-//                    Toast.makeText(context,"Error getting data", Toast.LENGTH_LONG).show();
-//                }else{
-//                    orders = (ArrayList<Order>)task.getResult().getValue();
-//                }
-//            }
-//        });
-
-//        items_to_str(orders);
-
+        //display the orders on the listview
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(owner.username).child("Orders");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -120,41 +51,40 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 
                         //make sure it's not an empty order
                         if (order.items != null) {
-                            String line =  formatOrder(order);
-                            ordersAdapter.add(line);
+                            ordersAdapter.add(order);
                         }
                     }
                 }
             }
         });
 
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                owner.wipeOrders();
-                owner.populateOrders();
-                display();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Context context = getApplicationContext();
-                Toast.makeText(context,"Error getting data", Toast.LENGTH_LONG).show();
-            }
-        };
-        setUpListViewListener();
+//        ValueEventListener listener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                owner.wipeOrders();
+//                owner.populateOrders();
+//                display();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Context context = getApplicationContext();
+//                Toast.makeText(context,"Error getting data", Toast.LENGTH_LONG).show();
+//            }
+//        };
+//        setUpListViewListener();
 
     }
 
-    private void display(){
-        ordersAdapter.clear();
-        if(!owner.orders.isEmpty()) {
-            for (CustomerOrder order : owner.orders) {
-                String toDisplay = "Ordered by " + order.customer + ", Order" + order.toString();
-                ordersAdapter.add(toDisplay);
-            }
-        }
-    }
+//    private void display(){
+//        ordersAdapter.clear();
+//        if(!owner.orders.isEmpty()) {
+//            for (CustomerOrder order : owner.orders) {
+//                String toDisplay = "Ordered by " + order.customer + ", Order" + order.toString();
+//                ordersAdapter.add(toDisplay);
+//            }
+//        }
+//    }
 
     private void setUpListViewListener(){
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

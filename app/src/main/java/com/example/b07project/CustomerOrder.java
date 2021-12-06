@@ -54,14 +54,11 @@ public class CustomerOrder implements Serializable {
 
     @Override
     public String toString(){
-        String output = "";
-        if (!items.isEmpty()){
-            output += "#" + orderNumber + ": ";
-            for (Product p: items){
-                output += p.toString() + ", ";
-            }
-            output += "from " + storeOwner;
+        String output = "OrderNumber: " + orderNumber + ", By: " + customer + '\n';
+        for (Product p: items){
+            output += p.toString() + '\n';
         }
+        output+= "Completed: " + completed + ", By: " + storeOwner;
         return output;
     }
 
