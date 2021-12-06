@@ -63,7 +63,7 @@ public class CustomerOrder implements Serializable {
         output+= "Completed: " + completed + "\n"+ "Store: " + storeOwner +"\n";
         return output;
     }
-    
+
 
     @Override
     public int hashCode(){
