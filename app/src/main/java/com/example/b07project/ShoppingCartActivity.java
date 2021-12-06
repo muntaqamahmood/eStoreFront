@@ -71,6 +71,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
 
                 storeOwner.populateAddWriteOrders(order);
+                Intent intent = new Intent(ShoppingCartActivity.this, Customer_Landing.class);
+                intent.putExtra("account", customer);
+                startActivity(intent);
 
 
 //                customer.allOrders.add(order);
