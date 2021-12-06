@@ -23,18 +23,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="379dp"
-        android:layout_height="507dp"
-        android:layout_marginBottom="45dp"
+        android:layout_width="382dp"
+        android:layout_height="381dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/cartTitle"
+        tools:layout_editor_absoluteX="15dp">
 
         <ListView
             android:id="@+id/cartListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="381dp" />
     </LinearLayout>
 
     <Button
@@ -45,10 +43,10 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnBackToLanding"
-        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.523" />
 
     <Button
         android:id="@+id/btnBackToLanding"
@@ -58,7 +56,18 @@
         android:layout_marginEnd="40dp"
         android:text="@string/back"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="276dp"
+        android:layout_height="27dp"
+        android:text="Click and Hold to remove item from Cart"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
