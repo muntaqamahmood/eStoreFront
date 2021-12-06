@@ -15,10 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class ViewAllOrdersActivity extends AppCompatActivity {
     
@@ -90,7 +88,7 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                //get position to use on owner.orders.get(postion)
+                //get position to use on owner.orders.get(position)
                 //remove from the owner orders list and write it
                 //go to the customer in the order and set its boolean completed to true
 
