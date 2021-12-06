@@ -18,6 +18,7 @@ public class CustomerSeeOrders extends AppCompatActivity {
 
     private Customer customer;
     private ListView lstView;
+    private final String sectionBreak = "-----------------------------------------";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +43,13 @@ public class CustomerSeeOrders extends AppCompatActivity {
                     for(DataSnapshot child : task.getResult().getChildren()){
                         CustomerOrder order = child.getValue(CustomerOrder.class);
                         //denote the ordernumber
-                        ordersAdapter.add("OrderNumber: " + order.orderNumber);
+                        ordersAdapter.add("OrderNumber: " + order.orderNumber + sectionBreak);
                         //show the products in the order
                         for(Product p: order.items){
                             ordersAdapter.add(p.toString());
                         }
                         //show the status of the order
-                        String ownerSignature = "From: " + order.storeOwner+ " ,Status: "+ order.completed;
+                        String ownerSignature = "From: " + order.storeOwner+ " ,Status: "+ order.completed + sectionBreak;
                         ordersAdapter.add(ownerSignature);
                     }
                 }
