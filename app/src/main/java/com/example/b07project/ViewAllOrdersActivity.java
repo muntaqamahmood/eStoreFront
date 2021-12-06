@@ -30,13 +30,14 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_orders);
 
+        //finds the listview on the UI
         listView = findViewById(R.id.listView);
         owner = (StoreOwner) getIntent().getSerializableExtra("account");
 
         ordersAdapter = new ArrayAdapter<CustomerOrder>(this, android.R.layout.simple_list_item_1);
         listView.setAdapter(ordersAdapter);
 
-        //display the orders on the listview
+        //read data from firebase and display the orders onto the listview
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(owner.username).child("Orders");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -57,57 +58,23 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
             }
         });
 
-//        ValueEventListener listener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                owner.wipeOrders();
-//                owner.populateOrders();
-//                display();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Context context = getApplicationContext();
-//                Toast.makeText(context,"Error getting data", Toast.LENGTH_LONG).show();
-//            }
-//        };
         setUpListViewListener();
 
     }
 
-//    private void display(){
-//        ordersAdapter.clear();
-//        if(!owner.orders.isEmpty()) {
-//            for (CustomerOrder order : owner.orders) {
-//                String toDisplay = "Ordered by " + order.customer + ", Order" + order.toString();
-//                ordersAdapter.add(toDisplay);
-//            }
-//        }
-//    }
 
     private void setUpListViewListener(){
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                //get position to use on owner.orders.get(position)
-                //remove from the owner orders list and write it
+                //removes the item clicked from the owner orders list and updates the orders list
                 //go to the customer in the order and set its boolean completed to true
 
-                //StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
-                //DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
                 Context context = getApplicationContext();
                 Toast.makeText(context,"Order Completed!",Toast.LENGTH_LONG).show();
 
                 owner.removeAndSetComplete(position, ordersAdapter); //removes from owner.orders and writes it
-                //CustomerOrder order = owner.orders.get(position);
-                //String customer = order.customer;
 
-                //owner.orders.remove(position);
-                //UpdateCustomerOrder(order,customer);
-
-
-                //ref.child(owner.getUsername()).child("Orders").setValue(owner.orders);
-//              ordersAdapter.notifyDataSetChanged();
                 Intent intent = new Intent(ViewAllOrdersActivity.this, OwnerLanding.class);
                 intent.putExtra("account", owner);
                 startActivity(intent);
@@ -119,36 +86,11 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 
     }
 
-//    public void UpdateCustomerOrder(CustomerOrder order, String customer){
-//        DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("customers");
-//        ref2.child(customer).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if (!(task.isSuccessful())) {
-//                    //error
-//                } else {
-//                    if (task.getResult().hasChildren()) {
-//
-//                        int i = 0;
-//                        for (DataSnapshot child : task.getResult().getChildren()) {
-//                            CustomerOrder order2 = child.getValue(CustomerOrder.class);
-//                            if (order2 != null) {
-//                                if (order.orderNumber == order2.orderNumber) {
-//                                    order2.markComplete();
-//                                    ref2.child(customer).child("Orders").child((String.valueOf(i))).setValue(order2);
-//                                }
-//                            }
-//                            i++;
-//                        }
-//                    }
-//                }
-//            }
-//
-//        });
-//    }
+
 
 
     private String formatOrder(CustomerOrder order){
+        //formats the output
         String output = "OrderNumber: " + order.orderNumber + ", From: " + order.customer + '\n';
         for (Product p: order.items){
             output += p.toString() + '\n';

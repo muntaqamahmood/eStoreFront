@@ -22,19 +22,8 @@ import java.util.ArrayList;
 public class viewStores extends AppCompatActivity {
 
     private ArrayList<StoreOwner> stores = new ArrayList<StoreOwner>();
-//    private ArrayList<String> str_stores;
     private ListView lstView;
 
-
-
-
-
-//    private void items_to_str(ArrayList<Order> o){
-//        str_stores = new ArrayList<String>();
-//        for(Order i:o){
-//            str_stores.add(i.toString());
-//        }
-//    }
 
     @Override
     protected  void onCreate(Bundle savedInstanceState){
@@ -44,10 +33,9 @@ public class viewStores extends AppCompatActivity {
          ArrayAdapter<String> storesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
          lstView = findViewById(R.id.listView);
          lstView.setAdapter(storesAdapter);
-        //StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
 
+         //reads from firebase and displays the store names on the All Stores page
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
-
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -66,39 +54,14 @@ public class viewStores extends AppCompatActivity {
                             }
                         }
                     }
-//                        if(!isCustomer){
-//                            StoreOwner storeOwner = child.getValue(StoreOwner.class);
-//                            if(storeOwner.getUsername().equals(username)){
-//                                presenter.doNotMakeAccount();
-//                                return;
-//                            }
-//                        }else{
-//                            Customer customer = child.getValue(Customer.class);
-//                            if(customer.getUsername().equals(username)){
-//                                presenter.doNotMakeAccount();
-//                                return;
-//                            }
-//                        }
-//
-//                    }
-//                    presenter.makeAccount(username, password, isCustomer);
-
                 }
-
             }
-
         });
-
-//        String[] stores_array = stores.toArray(new String[stores.size()]);
-//        ArrayList<String> str = new ArrayList<String>();
-//        str.add("avik");
-//        str.add("shadman");
-////        {"avik", "shadman"};
-
         setUpListViewListener(stores);
     }
 
     private void setUpListViewListener(ArrayList<StoreOwner> s) {
+        //when user clicks on a store, takes them to the store
         lstView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -109,11 +72,7 @@ public class viewStores extends AppCompatActivity {
 
     public void OpenCustomerViewStore(StoreOwner store){
         Intent intent = new Intent(this, CustomerViewStore.class);
-
-//        StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
-
         intent.putExtra("store_owner", store);
-
         Customer customer = (Customer) getIntent().getSerializableExtra("customer") ;
         intent.putExtra("customer",customer);
         startActivity(intent);
