@@ -52,6 +52,8 @@ public class AccountCreationActivity extends AppCompatActivity implements Accoun
         if(message.equals("")){
             Toast toast = Toast.makeText(getApplicationContext(), "account made", Toast.LENGTH_SHORT);
             toast.show();
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
         }else{
             TextView result = findViewById(R.id.lblResult);
             result.setText(message);

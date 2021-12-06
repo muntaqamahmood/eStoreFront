@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -48,6 +49,9 @@ public class AccountCreationPresenter implements AccountCreationContract.Present
             ref.child("customers").child(username).setValue(customer);
         }
         view.result("");
+
+
+
     }
 
     @Override
@@ -58,5 +62,7 @@ public class AccountCreationPresenter implements AccountCreationContract.Present
     public AccountCreationPresenter(AccountCreationContract.View view, AccountCreationContract.Model model){
         this.view = view;
         this.model = model;
+
+
     }
 }
