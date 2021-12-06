@@ -56,11 +56,13 @@ public class CustomerSeeOrders extends AppCompatActivity {
     }
 
     private String formatOrder(CustomerOrder order){
-        String output = "OrderNumber: " + order.orderNumber + ", From: " + order.storeOwner + '\n';
+        String output = "\nOrderNumber: " + order.orderNumber + "\n" + "From: " + order.storeOwner + '\n';
+        output += "\nItems: \n";
         for (Product p: order.items){
             output += p.toString() + '\n';
         }
-        output+= "Completed: " + order.completed;
+        output += "\n";
+        output+= "Completed: " + order.completed + "\n";
         return output;
     }
 }
