@@ -102,7 +102,7 @@ public class owner_add_product extends AppCompatActivity{
 
     //helper function to check if the input is an acceptable money value
     private boolean isPrice(String str){
-        Pattern p = Pattern.compile("[1-9]\\d*.\\d\\d|0.\\d{1,2}|[1-9]\\d*");
+        Pattern p = Pattern.compile("[1-9]\\d*.\\d{1,2}|0.\\d{1,2}|[1-9]\\d*");
         Matcher m = p.matcher(str);
         return m.matches();
     }
