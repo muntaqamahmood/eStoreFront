@@ -65,6 +65,7 @@ public class StorePage extends AppCompatActivity {
         });
     }
 
+    //display a toast message
     public void feedback(String msg){
         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
         toast.show();

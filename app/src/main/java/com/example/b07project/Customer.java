@@ -33,33 +33,9 @@ public class Customer extends Account implements Serializable {
     public void setPassword(String password){this.password = password;}
 
     //wipeAllOrders clears allOrders
-    //this is done on login so we can repopulate it without duplicating
+    //this is done on login so we can repopulate allOrders without duplicating orders
     public void wipeAllOrders(){allOrders.clear();}
 
-    //populateAllOrders will pull CustomerOrders from firebase and put it in allOrders
-    public void populateAllorders() {
-        //read the database
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("customers").child(username).child("Orders");
-        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                //in case we cant get that value
-                if (!task.isSuccessful()) {
-                    Log.e("B07 Project", "Couldn't get data", task.getException());
-                } else {
-                    //go through every product under the store owner
-                    if (task.getResult().getChildren() != null) {
-                        for (DataSnapshot child : task.getResult().getChildren()) {
-                            CustomerOrder c = child.getValue(CustomerOrder.class);
-                            allOrders.add(c);
-                        }
-                    }
-                }
-            }
-        });
-
-
-    }
 
     public void populateAddWriteOrders(CustomerOrder order){
         //read the database
@@ -87,6 +63,7 @@ public class Customer extends Account implements Serializable {
         });
     }
 
+    //adds a CustomerOrder to allOrders
     public void addOrder(CustomerOrder c){
         allOrders.add(c);
     }

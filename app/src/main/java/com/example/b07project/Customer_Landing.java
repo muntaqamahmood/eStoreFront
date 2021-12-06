@@ -21,22 +21,23 @@ public class Customer_Landing extends AppCompatActivity {
         TextView txtCustomerName = findViewById(R.id.txtCustomerName);
         txtCustomerName.setText(customer.getUsername());
     }
+    //sends the customer to the page where they select which store to buy from
     public void viewAllStores(View view){
         Intent intent = new Intent(this, viewStores.class);
 
-        intent.putExtra("customer", customer); //customer is NOT null
+        intent.putExtra("customer", customer);
+        intent.putExtra("customer", customer);
         startActivity(intent);
     }
+
     //customer can see their past Orders
     public void seeOrders(View view){
-        //wipe and repopulate the Customer's orders to make sure theyre up to date
-        customer.wipeAllOrders();
-        customer.populateAllorders();
 
         Intent intent = new Intent(this,CustomerSeeOrders.class);
         intent.putExtra("account", customer);
         startActivity(intent);
     }
+    //sends customer back to landing page
     public void customerLogOut(View v){
         Intent intent = new Intent(Customer_Landing.this, MainActivity.class);
         startActivity(intent);
