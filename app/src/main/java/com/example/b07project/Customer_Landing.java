@@ -24,7 +24,6 @@ public class Customer_Landing extends AppCompatActivity {
     public void viewAllStores(View view){
         Intent intent = new Intent(this, viewStores.class);
 
-        //customer = (Customer) getIntent().getSerializableExtra("account");
         customer.wipeAllOrders();
         customer.populateAllorders();
         intent.putExtra("customer", customer); //customer is NOT null

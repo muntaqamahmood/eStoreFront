@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Customer extends Account implements Serializable {
 
-    ArrayList<CustomerOrder> allOrders = new ArrayList<>();//
+    public ArrayList<CustomerOrder> allOrders = new ArrayList<>();//
 
     public Customer(){}
 
