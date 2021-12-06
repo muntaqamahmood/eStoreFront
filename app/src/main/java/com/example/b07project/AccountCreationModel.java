@@ -15,6 +15,7 @@ public class AccountCreationModel implements AccountCreationContract.Model{
 
     AccountCreationContract.Presenter presenter;
 
+    //checks if username is already used in data base
     @Override
     public void usernameAlreadyExists(String username, String password, boolean isCustomer) {
 

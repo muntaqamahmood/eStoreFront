@@ -38,11 +38,12 @@ public class AccountCreationPresenter implements AccountCreationContract.Present
         model.usernameAlreadyExists(username, password, isCustomer);
     }
 
+    //called if can make account
     @Override
     public void makeAccount(String username, String password, boolean isCustomer){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        if(!isCustomer){                                                      //future: if(account.getClass() == StoreOwner.class()){
-            StoreOwner storeOwner = new StoreOwner(username, password);       //future: storeOwner = (StoreOwner)account;
+        if(!isCustomer){
+            StoreOwner storeOwner = new StoreOwner(username, password);
             ref.child("store owners").child(username).setValue(storeOwner);
         }else{
             Customer customer = new Customer(username, password);
@@ -50,10 +51,9 @@ public class AccountCreationPresenter implements AccountCreationContract.Present
         }
         view.result("");
 
-
-
     }
 
+    //called if can't make account
     @Override
     public void doNotMakeAccount(){
         view.result("Username already exists");

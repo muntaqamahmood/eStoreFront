@@ -11,6 +11,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LoginModel implements LoginContract.Model{
     LoginContract.Presenter presenter;
 
+
+    //checks if correct credentials matched
     @Override
     public void correctCredentials(String username, String password, boolean isCustomer) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();

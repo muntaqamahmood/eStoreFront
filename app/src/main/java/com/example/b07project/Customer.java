@@ -37,7 +37,7 @@ public class Customer extends Account implements Serializable {
     public void wipeAllOrders(){allOrders.clear();}
 
 
-    public void populateAddWriteOrders(CustomerOrder order){
+    public void populateAddWriteOrders(CustomerOrder order){    //writes an added order to database
         //read the database
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("customers").child(username).child("Orders");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

@@ -42,7 +42,7 @@ public class StoreOwner extends Account implements Serializable {
     }
 
 
-    void populateAddWriteProducts(Product p){
+    void populateAddWriteProducts(Product p){       //writes an added product to database
         //read the database
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(username).child("Products");
@@ -71,7 +71,7 @@ public class StoreOwner extends Account implements Serializable {
     }
 
 
-    void populateAddWriteOrders(CustomerOrder order){
+    void populateAddWriteOrders(CustomerOrder order){       //writes an added order to database
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(username).child("Orders");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -95,6 +95,7 @@ public class StoreOwner extends Account implements Serializable {
         });
     }
 
+    //removes order from order list, sets it completed in the customers order list, and removes from list
     void removeAndSetComplete(int position, ArrayAdapter<CustomerOrder> adapter){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(username).child("Orders");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -121,6 +122,7 @@ public class StoreOwner extends Account implements Serializable {
         });
     }
 
+    //helper for removeAndSetComplete (this is the part that sets the order in Customers order list as Complete
     void UpdateCustomerOrder(CustomerOrder order, String customer){
         DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("customers");
         ref2.child(customer).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
