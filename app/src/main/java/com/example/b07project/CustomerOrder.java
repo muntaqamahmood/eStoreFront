@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /** this class is for customers to make orders from individual stores **/
 /** this can also be used by owners to keep track of orders and mark them complete **/
 public class CustomerOrder implements Serializable {
-    ArrayList<Product> items = new ArrayList<>();
+    public ArrayList<Product> items;
     public String storeOwner;
     public Boolean completed;
     public String customer;
@@ -21,6 +21,7 @@ public class CustomerOrder implements Serializable {
         this.customer = customer;
         orderNumber = totalOrders;
         totalOrders++;
+        items = new ArrayList<>();
     }
 
     /** This is for the owner to mark complete or not **/

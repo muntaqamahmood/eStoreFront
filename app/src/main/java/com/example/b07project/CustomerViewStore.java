@@ -25,7 +25,7 @@ public class CustomerViewStore extends AppCompatActivity {
     private StoreOwner owner;
     private ListView lstView;
     private Customer customer;
-    private CustomerOrder order;
+    CustomerOrder order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
