@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,7 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
     private ArrayAdapter<String> ordersAdapter;
     private ListView listView;
     private StoreOwner owner;
+    private final String sectionBreak = "--------------";
 //    private ArrayList<Order> orders;
 
 //    private void items_to_str(ArrayList<Order> o){
@@ -105,9 +107,36 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 
 //        items_to_str(orders);
 
-        display();
+        //display();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(owner.username).child("Orders");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful()){
+                    Log.e("B07 Project", "Couldn't get data", task.getException());
+                }
+                else{
+                    for(DataSnapshot child : task.getResult().getChildren()) {
+                        CustomerOrder order = child.getValue(CustomerOrder.class);
+
+                        //make sure it's not an empty order
+                        if (order.items != null) {
+                            //denote the ordernumber
+                            ordersAdapter.add("OrderNumber: " + order.orderNumber + sectionBreak);
+                            //show the products in the order
+                            for (Product p : order.items) {
+                                ordersAdapter.add(p.toString());
+                            }
+                            //show the status of the order
+                            String custSignature = "From: " + order.customer + " ,Status: " + order.completed + sectionBreak;
+                            ordersAdapter.add(custSignature);
+                        }
+                    }
+                }
+            }
+        });
+
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
