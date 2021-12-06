@@ -28,10 +28,8 @@ public class CustomerOrder implements Serializable {
     public CustomerOrder(String owner, String customer){
         storeOwner = owner;
         this.customer = customer;
-        orderNumber = fetchOrderCount();
         items = new ArrayList<>();
         completed = false;
-        incrementOrders();
     }
 
     /** This is for the owner to mark complete or not **/
@@ -71,8 +69,7 @@ public class CustomerOrder implements Serializable {
     }
 
     //gets the order count from firebase
-    int fetchOrderCount(){
-        int num = 0;
+    public int fetchOrderCount(){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("OrderCount");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -80,15 +77,16 @@ public class CustomerOrder implements Serializable {
                 if (!task.isSuccessful()) {
                     Log.e("B07 Project", "Couldn't get data", task.getException());
                 } else {
-                    int num = ((Long)task.getResult().child("number").getValue()).intValue();
+                    if (task.getResult().getChildren() != null) {
+                        int orderNumber = ((Long) task.getResult().child("number").getValue()).intValue();
+                        //increment the ordernumber
+                        DatabaseReference refIncrement = FirebaseDatabase.getInstance().getReference();
+                        refIncrement.child("OrderCount").child("number").setValue(orderNumber + 1);
+                    }
                 }
             }
         });
-        return num;
+        return orderNumber;
     }
 
-    void incrementOrders(){
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("OrderCount").child("number").setValue(this.orderNumber + 1);
-    }
 }
