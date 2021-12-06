@@ -48,7 +48,7 @@ public class CustomerSeeOrders extends AppCompatActivity {
                             ordersAdapter.add(p.toString());
                         }
                         //show the status of the order
-                        String ownerSignature = "From: " + order.storeOwner+ " Status: "+ order.completed;
+                        String ownerSignature = "From: " + order.storeOwner+ " ,Status: "+ order.completed;
                         ordersAdapter.add(ownerSignature);
                     }
                 }

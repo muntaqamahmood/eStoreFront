@@ -71,7 +71,7 @@ public class CustomerOrder implements Serializable {
     }
 
     //gets the order count from firebase
-    private int fetchOrderCount(){
+    int fetchOrderCount(){
         int num = 0;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("OrderCount");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -87,7 +87,7 @@ public class CustomerOrder implements Serializable {
         return num;
     }
 
-    private void incrementOrders(){
+    void incrementOrders(){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         ref.child("OrderCount").child("number").setValue(this.orderNumber + 1);
     }
