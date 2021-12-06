@@ -6,7 +6,6 @@
         <entry key="../../../layout/custom_preview.xml" value="0.42314814814814816" />
         <entry key="../Library/Android/sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.21603260869565216" />
         <entry key="..\:/Users/Raymond/Desktop/cscb07/B07Project/app/src/main/res/layout/activity_account_creation.xml" value="0.31197916666666664" />
-<<<<<<< Updated upstream
         <entry key="..\:/Users/Raymond/Desktop/cscb07/B07Project/app/src/main/res/layout/activity_customer_landing.xml" value="0.35280797101449274" />
         <entry key="..\:/Users/Raymond/Desktop/cscb07/B07Project/app/src/main/res/layout/activity_customer_view_store.xml" value="0.34782608695652173" />
         <entry key="..\:/Users/Raymond/Desktop/cscb07/B07Project/app/src/main/res/layout/activity_login.xml" value="0.35280797101449274" />
@@ -14,10 +13,6 @@
         <entry key="..\:/Users/Raymond/Desktop/cscb07/B07Project/app/src/main/res/layout/activity_owner_add_product.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Raymond/Desktop/cscb07/B07Project/app/src/main/res/layout/activity_owner_landing.xml" value="0.34782608695652173" />
         <entry key="..\:/Users/Raymond/Desktop/cscb07/B07Project/app/src/main/res/layout/activity_shopping_cart.xml" value="0.265625" />
-=======
-        <entry key="..\:/Users/Raymond/Desktop/cscb07/B07Project/app/src/main/res/layout/activity_main.xml" value="0.31197916666666664" />
-        <entry key="..\:/Users/Raymond/Desktop/cscb07/B07Project/app/src/main/res/layout/activity_owner_add_product.xml" value="0.36666666666666664" />
->>>>>>> Stashed changes
         <entry key="..\:/Users/moyra/Desktop/cscb07/project/B07Project/app/src/main/res/layout/activity_account_creation.xml" value="0.23867753623188406" />
         <entry key="..\:/Users/moyra/Desktop/cscb07/project/B07Project/app/src/main/res/layout/activity_main.xml" value="0.23867753623188406" />
         <entry key="..\:/Users/moyra/Desktop/cscb07/project/B07Project/app/src/main/res/layout/activity_owner_add_product.xml" value="0.25" />
@@ -29,7 +24,6 @@
         <entry key="app/src/main/res/layout/activity_customer_landing.xml" value="0.27717391304347827" />
         <entry key="app/src/main/res/layout/activity_customer_view_product.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_customer_view_store.xml" value="0.21603260869565216" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.24365942028985507" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21603260869565216" />
         <entry key="app/src/main/res/layout/activity_order_confirmation.xml" value="0.21603260869565216" />
         <entry key="app/src/main/res/layout/activity_order_confirmation_.xml" value="0.335" />
