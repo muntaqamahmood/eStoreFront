@@ -21,10 +21,11 @@ public class Customer_Landing extends AppCompatActivity {
         TextView txtCustomerName = findViewById(R.id.txtCustomerName);
         txtCustomerName.setText(customer.getUsername());
     }
+    //sends the customer to the page where they select which store to buy from
     public void viewAllStores(View view){
         Intent intent = new Intent(this, viewStores.class);
 
-        intent.putExtra("customer", customer); //customer is NOT null
+        intent.putExtra("customer", customer);
         startActivity(intent);
     }
     //customer can see their past Orders
@@ -37,6 +38,7 @@ public class Customer_Landing extends AppCompatActivity {
         intent.putExtra("account", customer);
         startActivity(intent);
     }
+    //sends customer back to landing page
     public void customerLogOut(View v){
         Intent intent = new Intent(Customer_Landing.this, MainActivity.class);
         startActivity(intent);

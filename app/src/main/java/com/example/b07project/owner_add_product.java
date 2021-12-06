@@ -73,15 +73,7 @@ public class owner_add_product extends AppCompatActivity{
 
     //firebase will add the p onto the firebase under owner's Product child
     public void fireBase(StoreOwner owner, Product p){
-
         owner.populateAddWriteProducts(p);
-        //add the product to the owner's list of products
-        //owner.addProduct(p);
-        //String username = owner.getUsername();
-
-        //write out the owner's list of products onto the firebase
-        //DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        //ref.child("store owners").child(username).child("Products").setValue(owner.products);
     }
 
     //check if the inputs from the textviews are valid

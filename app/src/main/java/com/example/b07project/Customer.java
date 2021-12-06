@@ -33,7 +33,7 @@ public class Customer extends Account implements Serializable {
     public void setPassword(String password){this.password = password;}
 
     //wipeAllOrders clears allOrders
-    //this is done on login so we can repopulate it without duplicating
+    //this is done on login so we can repopulate allOrders without duplicating orders
     public void wipeAllOrders(){allOrders.clear();}
 
     //populateAllOrders will pull CustomerOrders from firebase and put it in allOrders
@@ -87,6 +87,7 @@ public class Customer extends Account implements Serializable {
         });
     }
 
+    //adds a CustomerOrder to allOrders
     public void addOrder(CustomerOrder c){
         allOrders.add(c);
     }

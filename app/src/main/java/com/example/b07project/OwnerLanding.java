@@ -14,8 +14,6 @@ public class OwnerLanding extends AppCompatActivity {
         setContentView(R.layout.activity_owner_landing);
     }
 
-
-
     //addProduct will send the user to the activity for adding a product
     public void addProduct(View view){
         //retrieve the store owner
@@ -40,6 +38,7 @@ public class OwnerLanding extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //sends the storeowner to see their orders to be complete
     public void seeOrders(View view){
         //retrieve the store owner
         StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");

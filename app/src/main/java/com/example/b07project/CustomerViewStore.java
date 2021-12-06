@@ -33,7 +33,6 @@ public class CustomerViewStore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_view_store);
 
-        //receive intents from previous activity
         //get the accounts from previous activity
         owner = (StoreOwner) getIntent().getSerializableExtra("store_owner");
         customer = (Customer) getIntent().getSerializableExtra("customer");
@@ -99,12 +98,6 @@ public class CustomerViewStore extends AppCompatActivity {
             Context context2 = getApplicationContext();
             Toast.makeText(context2, "Order cannot be empty.",Toast.LENGTH_LONG).show();
         }
-//        customer.wipeAllOrders();
-//        customer.populateAllorders();
-//
-//        owner.wipeOrders();
-//        owner.populateOrders();
-
     }
 
 }
