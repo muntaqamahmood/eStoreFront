@@ -1,10 +1,13 @@
 package com.example.b07project;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,8 +24,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private ListView lstView;
     private Button orderBtn;
 
-////    private TextView productName, productBrand, productPrice;
-//    private String state = "Normal";
+//   private TextView productName, productBrand, productPrice;
+//   private String state = "Normal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,11 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference();
                 reference2.child("store owners").child(order.storeOwner).child("Orders").setValue(storeOwner.orders);
 
+                Context context = getApplicationContext();
+                Toast.makeText(context,"Order Placed!",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(ShoppingCartActivity.this, Customer_Landing.class);
+                intent.putExtra("account", customer);
+                startActivity(intent);
 
                 /*if(state.equals("Order successful!")||state.equals("Order ready for pickup!")){
                     Toast.makeText(ShoppingCartActivity.this, "You can now pick up your order", Toast.LENGTH_LONG).show();
@@ -67,7 +75,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
     }
-
    /* private void addedToCart(){
         final DatabaseReference refToCartList = FirebaseDatabase.getInstance().getReference().child("Cart List");
         final HashMap<String, Object>cartMap = new HashMap<>();
