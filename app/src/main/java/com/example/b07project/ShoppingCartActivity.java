@@ -39,11 +39,12 @@ public class ShoppingCartActivity extends AppCompatActivity {
         ArrayAdapter<Product> productsAdapter = new ArrayAdapter<Product>(this, android.R.layout.simple_list_item_1);
         lstView = findViewById(R.id.cartListView);
         lstView.setAdapter(productsAdapter);
-        if(order.items != null){
-            for(Product p: order.items){
+        if(order.items != null) {
+            for (Product p : order.items) {
                 productsAdapter.add(p);
             }
         }
+//            }
         backBtn = (Button)findViewById((R.id.btnBackToLanding));
         backBtn.setVisibility(View.INVISIBLE);
 
@@ -61,6 +62,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 backBtn.setVisibility(View.VISIBLE);
                 orderBtn.setVisibility(View.INVISIBLE);

@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,16 +89,22 @@ public class CustomerViewStore extends AppCompatActivity {
 
     //checkout will send the user to the checkout activity
     public void checkout(View view){
+        if(!order.items.isEmpty()){
+            Intent intent = new Intent(this, ShoppingCartActivity.class);
+            intent.putExtra("customer", customer);
+            intent.putExtra("store_owner", owner);
+            intent.putExtra("order", order);
+            startActivity(intent);
+        }else{
+            Context context2 = getApplicationContext();
+            Toast.makeText(context2, "Order cannot be empty.",Toast.LENGTH_LONG).show();
+        }
 //        customer.wipeAllOrders();
 //        customer.populateAllorders();
 //
 //        owner.wipeOrders();
 //        owner.populateOrders();
-        Intent intent = new Intent(this, ShoppingCartActivity.class);
-        intent.putExtra("customer", customer);
-        intent.putExtra("store_owner", owner);
-        intent.putExtra("order", order);
-        startActivity(intent);
+
     }
 
 }

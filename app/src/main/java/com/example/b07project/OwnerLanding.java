@@ -1,10 +1,10 @@
 package com.example.b07project;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class OwnerLanding extends AppCompatActivity {
 
@@ -42,7 +42,7 @@ public class OwnerLanding extends AppCompatActivity {
     public void seeOrders(View view){
         //retrieve the store owner
         StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
-        owner.wipeProducts();
+        owner.wipeOrders();
         owner.populateOrders();
 
         Intent intent = new Intent(this,ViewAllOrdersActivity.class);
