@@ -81,10 +81,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
 //                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference();
 //                reference2.child("store owners").child(order.storeOwner).child("Orders").setValue(storeOwner.orders);
 //
-                
-                Intent intent = new Intent(ShoppingCartActivity.this, Customer_Landing.class);
-                intent.putExtra("account", customer);
-                startActivity(intent);
 
 
                 /*if(state.equals("Order successful!")||state.equals("Order ready for pickup!")){
