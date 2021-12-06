@@ -3,7 +3,6 @@ package com.example.b07project;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,9 +10,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -73,7 +69,18 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
                 customer.populateAddWriteOrders(order);
 
+
                 storeOwner.populateAddWriteOrders(order);
+
+
+//                customer.allOrders.add(order);
+//                DatabaseReference reference =  FirebaseDatabase.getInstance().getReference();
+//                reference.child("customers").child(order.customer).child("Orders").setValue(customer.allOrders);
+
+//                storeOwner.orders.add(order);
+//                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference();
+//                reference2.child("store owners").child(order.storeOwner).child("Orders").setValue(storeOwner.orders);
+//
 
 
                 /*if(state.equals("Order successful!")||state.equals("Order ready for pickup!")){
