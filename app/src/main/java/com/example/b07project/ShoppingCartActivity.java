@@ -66,6 +66,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     orderBtn.setVisibility(View.INVISIBLE);
                     Context context = getApplicationContext();
                     Toast.makeText(context, "Order Placed!", Toast.LENGTH_LONG).show();
+
+                    order.orderNumber = order.fetchOrderCount();//assign an orderNumber
+
                     customer.populateAddWriteOrders(order);
                     storeOwner.populateAddWriteOrders(order);
                 }else{
