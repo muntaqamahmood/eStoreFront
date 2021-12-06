@@ -19,8 +19,6 @@ public class OwnerLanding extends AppCompatActivity {
         //retrieve the store owner
         StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
 
-        owner.wipeProducts();
-        owner.populateProducts();
 
         Intent intent = new Intent(this, owner_add_product.class);
         intent.putExtra("store_owner", owner);
