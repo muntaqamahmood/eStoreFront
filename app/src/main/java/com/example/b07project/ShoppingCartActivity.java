@@ -22,11 +22,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private ListView lstView;
     private Button orderBtn;
     private Button backBtn;
-    private Button removeBtn;
-    //ArrayAdapter<Product> productsAdapter = new ArrayAdapter<Product>(this, android.R.layout.simple_list_item_1);
-
-//   private TextView productName, productBrand, productPrice;
-//   private String state = "Normal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +35,14 @@ public class ShoppingCartActivity extends AppCompatActivity {
         ArrayAdapter<Product> productsAdapter = new ArrayAdapter<Product>(this, android.R.layout.simple_list_item_1);
         lstView = findViewById(R.id.cartListView);
         lstView.setAdapter(productsAdapter);
+
+        //looping through arraylist of order and adding using an adapter
         if(order.items != null) {
             for (Product p : order.items) {
                 productsAdapter.add(p);
             }
         }
-
+        // back button takes customer back to landing page onClick
         backBtn = (Button)findViewById((R.id.btnBackToLanding));
         backBtn.setVisibility(View.INVISIBLE);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,52 +53,52 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     startActivity(intent);
             }
         });
-
+        // order button places an order onClick
         orderBtn = (Button)findViewById(R.id.orderButton);
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //when cart is not empty
                 if(!order.items.isEmpty()) {
                     backBtn.setVisibility(View.VISIBLE);
                     orderBtn.setVisibility(View.INVISIBLE);
                     Context context = getApplicationContext();
                     Toast.makeText(context, "Order Placed!", Toast.LENGTH_LONG).show();
-
-                    order.orderNumber = order.fetchOrderCount();//assign an orderNumber
-
+                    //assign an orderNumber
+                    order.orderNumber = order.fetchOrderCount();
+                    //write order to Firebase for both customers and store owners
                     customer.populateAddWriteOrders(order);
                     storeOwner.populateAddWriteOrders(order);
                 }else{
+                    //when cart is empty say this
                     Context context = getApplicationContext();
                     Toast.makeText(context, "Shopping Cart cannot be empty.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-//        removeBtn = (Button)findViewById(R.id.removeButton);
-//        removeBtn.setOnClickListener(new View.OnClickListener(){
-//
-//        });
         setUpViewListener(productsAdapter);
 
     }
+    //removing a product from the Cart with a LongClick
     public void setUpViewListener(ArrayAdapter<Product> productsAdapter){
         lstView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
-
+            //on LongClick item is removed
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //locate product position
                 Product productToRemove = (Product) lstView.getItemAtPosition(position);
+                //removes the product
                 order.deleteProduct(productToRemove);
                 productsAdapter.remove(productToRemove);
+                //shows feedback
                 feedback("Removed " + productToRemove.toString());
-//                Intent intent = new Intent(ShoppingCartActivity.this, ShoppingCartActivity.class);
-//                startActivity(intent);
                 return false;
             }
         });
     }
+    //feedback message
     public void feedback(String msg){
         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
         toast.show();
     }
-
 }
