@@ -54,13 +54,16 @@ public class CustomerOrder implements Serializable {
 
     @Override
     public String toString(){
-        String output = "OrderNumber: " + orderNumber + ", By: " + customer + '\n';
+        String output = "\nOrderNumber: " + orderNumber +"\n" + "Customer: " + customer + '\n';
+        output += "\nItems:\n";
         for (Product p: items){
             output += p.toString() + '\n';
         }
-        output+= "Completed: " + completed + ", By: " + storeOwner;
+        output += "\n";
+        output+= "Completed: " + completed + "\n"+ "Store: " + storeOwner +"\n";
         return output;
     }
+    
 
     @Override
     public int hashCode(){
