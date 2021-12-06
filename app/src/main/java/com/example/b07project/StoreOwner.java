@@ -1,6 +1,7 @@
 package com.example.b07project;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 
@@ -137,6 +138,61 @@ public class StoreOwner extends Account implements Serializable {
                     reference2.child("store owners").child(order.storeOwner).child("Orders").setValue(orders);
                 }
             }
+        });
+    }
+
+    void removeAndSetComplete(int position, ArrayAdapter<CustomerOrder> adapter){
+       // CustomerOrder customerOrder;
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners").child(username).child("Orders");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful())
+                    Log.e("B07 Project", "Couldn't get data", task.getException());
+                else{
+                    wipeOrders();
+                    if(task.getResult().getChildren() != null) {
+                        for (DataSnapshot child : task.getResult().getChildren()) {
+                            CustomerOrder customerOrder = child.getValue(CustomerOrder.class);
+                            orders.add(customerOrder);
+                        }
+                    }
+                    CustomerOrder customerOrder = orders.get(position);
+                    adapter.remove(customerOrder);
+                    UpdateCustomerOrder(customerOrder,customerOrder.customer);
+                    orders.remove(position);
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
+                    ref.child(username).child("Orders").setValue(orders);
+                }
+            }
+        });
+    }
+
+    void UpdateCustomerOrder(CustomerOrder order, String customer){
+        DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("customers");
+        ref2.child(customer).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!(task.isSuccessful())) {
+                    //error
+                } else {
+                    if (task.getResult().hasChildren()) {
+
+                        int i = 0;
+                        for (DataSnapshot child : task.getResult().getChildren()) {
+                            CustomerOrder order2 = child.getValue(CustomerOrder.class);
+                            if (order2 != null) {
+                                if (order.orderNumber == order2.orderNumber) {
+                                    order2.markComplete();
+                                    ref2.child(customer).child("Orders").child((String.valueOf(i))).setValue(order2);
+                                }
+                            }
+                            i++;
+                        }
+                    }
+                }
+            }
+
         });
     }
 

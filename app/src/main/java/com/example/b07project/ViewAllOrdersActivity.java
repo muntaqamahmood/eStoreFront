@@ -72,7 +72,7 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 //                Toast.makeText(context,"Error getting data", Toast.LENGTH_LONG).show();
 //            }
 //        };
-//        setUpListViewListener();
+        setUpListViewListener();
 
     }
 
@@ -90,19 +90,24 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //get position to use on owner.orders.get(postion)
+                //remove from the owner orders list and write it
+                //go to the customer in the order and set its boolean completed to true
 
-                StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
+                //StoreOwner owner = (StoreOwner) getIntent().getSerializableExtra("account");
+                //DatabaseReference ref = FirebaseDatabase.getInstance().getReference("store owners");
                 Context context = getApplicationContext();
-
-                CustomerOrder order = owner.orders.get(position);
-                String customer = order.customer;
-
-                owner.orders.remove(position);
-                UpdateCustomerOrder(order,customer);
-
                 Toast.makeText(context,"Order Completed!",Toast.LENGTH_LONG).show();
-                ref.child(owner.getUsername()).child("Orders").setValue(owner.orders);
+
+                owner.removeAndSetComplete(position, ordersAdapter); //removes from owner.orders and writes it
+                //CustomerOrder order = owner.orders.get(position);
+                //String customer = order.customer;
+
+                //owner.orders.remove(position);
+                //UpdateCustomerOrder(order,customer);
+
+
+                //ref.child(owner.getUsername()).child("Orders").setValue(owner.orders);
 //              ordersAdapter.notifyDataSetChanged();
 
                 return true;
@@ -112,33 +117,33 @@ public class ViewAllOrdersActivity extends AppCompatActivity {
 
     }
 
-    public void UpdateCustomerOrder(CustomerOrder order, String customer){
-        DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("customers");
-        ref2.child(customer).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!(task.isSuccessful())) {
-                    //error
-                } else {
-                    if (task.getResult().hasChildren()) {
-
-                        int i = 0;
-                        for (DataSnapshot child : task.getResult().getChildren()) {
-                            CustomerOrder order2 = child.getValue(CustomerOrder.class);
-                            if (order2 != null) {
-                                if (order.orderNumber == order2.orderNumber) {
-                                    order2.markComplete();
-                                    ref2.child(customer).child("Orders").child((String.valueOf(i))).setValue(order2);
-                                }
-                            }
-                            i++;
-                        }
-                    }
-                }
-            }
-
-        });
-    }
+//    public void UpdateCustomerOrder(CustomerOrder order, String customer){
+//        DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("customers");
+//        ref2.child(customer).child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                if (!(task.isSuccessful())) {
+//                    //error
+//                } else {
+//                    if (task.getResult().hasChildren()) {
+//
+//                        int i = 0;
+//                        for (DataSnapshot child : task.getResult().getChildren()) {
+//                            CustomerOrder order2 = child.getValue(CustomerOrder.class);
+//                            if (order2 != null) {
+//                                if (order.orderNumber == order2.orderNumber) {
+//                                    order2.markComplete();
+//                                    ref2.child(customer).child("Orders").child((String.valueOf(i))).setValue(order2);
+//                                }
+//                            }
+//                            i++;
+//                        }
+//                    }
+//                }
+//            }
+//
+//        });
+//    }
 
 
     private String formatOrder(CustomerOrder order){
